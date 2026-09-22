@@ -1,5 +1,9 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/onboarding/screens/login_screen.dart';
+import '../features/onboarding/screens/signup_screen.dart';
+import '../features/onboarding/screens/verify_code_screen.dart';
+import '../features/onboarding/screens/welcome_screen.dart';
 import '../shared/widgets/placeholder_screen.dart';
 
 // Rutas de las 31 pantallas del inventario móvil. En M1 apuntan a
@@ -11,42 +15,22 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/welcome',
       name: 'welcome',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '01',
-        frameName: 'Bienvenida',
-        frameNodeId: '8:1355',
-        checkpoint: 'M2',
-      ),
+      builder: (context, state) => const WelcomeScreen(),
     ),
     GoRoute(
       path: '/login',
       name: 'login',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '02',
-        frameName: 'Iniciar sesión',
-        frameNodeId: '8:1369',
-        checkpoint: 'M2',
-      ),
+      builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
       path: '/signup',
       name: 'signup',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '03',
-        frameName: 'Crear cuenta',
-        frameNodeId: '8:1384',
-        checkpoint: 'M2',
-      ),
+      builder: (context, state) => const SignupScreen(),
       routes: [
         GoRoute(
           path: 'verify-code',
           name: 'signup-verify-code',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '04',
-            frameName: 'Verificar código',
-            frameNodeId: '8:1409',
-            checkpoint: 'M2',
-          ),
+          builder: (context, state) => const VerifyCodeScreen(),
         ),
         GoRoute(
           path: 'eps',
