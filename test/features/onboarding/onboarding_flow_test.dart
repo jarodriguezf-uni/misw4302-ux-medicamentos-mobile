@@ -56,7 +56,7 @@ void main() {
 
     await tester.tap(find.byKey(const Key('otp-verify')));
     await tester.pumpAndSettle();
-    expect(find.text('05 — Elegir EPS'), findsOneWidget);
+    expect(find.text('Vincular tu EPS'), findsOneWidget);
   });
 
   testWidgets('Entrar conduce al Inicio simulado', (tester) async {
