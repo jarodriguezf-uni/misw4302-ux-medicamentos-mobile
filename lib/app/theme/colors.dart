@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 // Paleta confirmada contra Figma (oX2LEnqkcmrH5FwXSHa2kz, página 0:1).
-// Trazabilidad completa en docs/design/design-manifest.json.
 abstract final class AppColors {
   static const primary = Color(0xFF127E76);
   static const onPrimary = Colors.white;
@@ -29,6 +28,11 @@ abstract final class AppColors {
   // Tab activo de la barra inferior, nodo 24:105.
   static const tabActiveBg = Color(0xFFFFDBCB);
   static const tabActiveFg = Color(0xFF3A0F00);
+
+  // Loader de validación de afiliación, nodo 8:1445.
+  static const loaderBackground = Color(0xFFA6F2E8);
+  static const loaderCaption = Color(0xFF3A4A47);
+  static const loaderStatus = Color(0xFF00201D);
 
   static const scrim = Colors.black;
   static const scrimOpacity = 0.45; // nodo 65:97
