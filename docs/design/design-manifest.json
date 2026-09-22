@@ -1,0 +1,450 @@
+{
+  "figmaFile": {
+    "fileKey": "oX2LEnqkcmrH5FwXSHa2kz",
+    "fileName": "Mockups",
+    "connector": "plugin:figma:figma (Figma desktop MCP)",
+    "lastCrossCheckedAgainstFigma": "2026-09-21",
+    "crossCheckMethod": "get_metadata(0:1) comparado 1 a 1 contra la sección 1 del plan técnico: 31/31 frames, nombres y dimensiones coinciden.",
+    "note": "El archivo no publica variables de Figma (get_variable_defs devuelve {} en los nodos consultados); todos los tokens de docs/design/design-manifest.json y lib/app/theme salen de get_design_context/get_screenshot sobre nodos concretos, no de variables.",
+    "referencesNote": "docs/design/references/ no se versiona (.gitignore) hasta confirmar permiso de redistribución; los campos referenceCapture.path abajo son rutas locales esperadas."
+  },
+  "platform": "mobile",
+  "pageNodeId": "0:1",
+  "pageName": "Movil",
+  "frameDimensions": "360x800",
+  "frames": [
+    {
+      "order": 1, "frameLabel": "01", "name": "Bienvenida",
+      "frameNodeId": "8:1355", "visualNodeId": "8:1355", "navigationSourceNodeId": "8:1355",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M2",
+      "codeRoute": "/welcome", "codeRouteName": "welcome",
+      "codePath": "lib/features/onboarding/screens/welcome_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/01-bienvenida-8-1355.png", "captured": true },
+      "assets": { "status": "pending-extraction", "notes": "Ilustración circular con frasco (nodo 8:1359-8:1361) por exportar como SVG en M2." },
+      "outgoingInteractions": [
+        { "action": "Crear cuenta", "target": "signup" },
+        { "action": "Ya tengo cuenta", "target": "login" }
+      ],
+      "notes": "Fondo teal, CTA primario + secundario. Título hero confirmado en 26px Plus Jakarta Sans Bold (sección 8 del plan)."
+    },
+    {
+      "order": 2, "frameLabel": "02", "name": "Iniciar sesión",
+      "frameNodeId": "8:1369", "visualNodeId": "8:1369", "navigationSourceNodeId": "8:1369",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M2",
+      "codeRoute": "/login", "codeRouteName": "login",
+      "codePath": "lib/features/onboarding/screens/login_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/02-iniciar-sesion-8-1369.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Entrar", "target": "home" },
+        { "action": "Crear cuenta", "target": "signup" }
+      ],
+      "notes": "Documento/correo, contraseña enmascarada."
+    },
+    {
+      "order": 3, "frameLabel": "03", "name": "Crear cuenta",
+      "frameNodeId": "8:1384", "visualNodeId": "8:1384", "navigationSourceNodeId": "8:1384",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M2",
+      "codeRoute": "/signup", "codeRouteName": "signup",
+      "codePath": "lib/features/onboarding/screens/signup_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/03-crear-cuenta-8-1384.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Continuar", "target": "signup-verify-code" }
+      ],
+      "notes": "Tipo de documento, documento, correo, celular, checkbox términos/política."
+    },
+    {
+      "order": 4, "frameLabel": "04", "name": "Verificar código",
+      "frameNodeId": "8:1409", "visualNodeId": "8:1409", "navigationSourceNodeId": "8:1409",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M2",
+      "codeRoute": "/signup/verify-code", "codeRouteName": "signup-verify-code",
+      "codePath": "lib/features/onboarding/screens/verify_code_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/04-verificar-codigo-8-1409.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Verificar", "target": "signup-eps" },
+        { "action": "Reenviar código", "target": "inert (cambio local de estado, sin navegación)" }
+      ],
+      "notes": "OTP de 4 casillas, foco visible en la primera. No hay estado de error diseñado."
+    },
+    {
+      "order": 5, "frameLabel": "05", "name": "Elegir EPS",
+      "frameNodeId": "8:1426", "visualNodeId": "8:1426", "navigationSourceNodeId": "8:1426",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M3",
+      "codeRoute": "/signup/eps", "codeRouteName": "signup-eps",
+      "codePath": "lib/features/affiliation/screens/choose_eps_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/05-elegir-eps-8-1426.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Sanitas", "target": "signup-eps-confirm-sanitas" },
+        { "action": "Compensar", "target": "signup-eps-confirm-compensar" }
+      ],
+      "notes": "Búsqueda 'Busca tu EPS' + opciones Sanitas/Compensar."
+    },
+    {
+      "order": 6, "frameLabel": "06", "name": "Validando afiliación",
+      "frameNodeId": "8:1445", "visualNodeId": "8:1445", "navigationSourceNodeId": "8:1445",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M3",
+      "codeRoute": "/signup/eps/validating", "codeRouteName": "signup-eps-validating",
+      "codePath": "lib/features/affiliation/screens/validating_affiliation_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/06-validando-afiliacion-8-1445.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "avance automático", "target": "signup-eps-status" }
+      ],
+      "notes": "Loader con avance automático; no requiere interacción del usuario."
+    },
+    {
+      "order": 7, "frameLabel": "07", "name": "Estado de la afiliación",
+      "frameNodeId": "8:1456", "visualNodeId": "8:1456", "navigationSourceNodeId": "8:1456",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M3",
+      "codeRoute": "/signup/eps/status", "codeRouteName": "signup-eps-status",
+      "codePath": "lib/features/affiliation/screens/affiliation_status_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/07-estado-afiliacion-8-1456.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Continuar", "target": "home" },
+        { "action": "Regresar", "target": "signup-eps" }
+      ],
+      "notes": "Confirmación positiva 'Tu EPS quedó vinculada'. No hay estado de rechazo diseñado."
+    },
+    {
+      "order": 8, "frameLabel": "08", "name": "Inicio",
+      "frameNodeId": "8:1470", "visualNodeId": "8:1470", "navigationSourceNodeId": "8:1470",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M4",
+      "codeRoute": "/home", "codeRouteName": "home",
+      "codePath": "lib/features/home/screens/home_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/08-inicio-8-1470.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": "Comparte iconos de bottom nav confirmados en nodo 24:60 (ver frame 15)." },
+      "outgoingInteractions": [
+        { "action": "Notificación 'medicamento disponible'", "target": "home-pickup-decision" },
+        { "action": "Medicinas", "target": "medicines-search" },
+        { "action": "Turno", "target": "appointments" },
+        { "action": "nav: Inicio", "target": "home (activo)" },
+        { "action": "nav: Cuenta", "target": "inert" },
+        { "action": "nav: Reclamar", "target": "inert" }
+      ],
+      "notes": "Saludo (24px Plus Jakarta Sans Bold, confirmado nodo 65:88), reclamo en curso, última notificación, barra inferior de 5 destinos."
+    },
+    {
+      "order": 9, "frameLabel": "09", "name": "Buscar medicamento",
+      "frameNodeId": "8:1509", "visualNodeId": "8:1509", "navigationSourceNodeId": "8:1509",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/search", "codeRouteName": "medicines-search",
+      "codePath": "lib/features/medicines/screens/search_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/09-buscar-medicamento-8-1509.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Escanear mi fórmula", "target": "medicines-results" }
+      ],
+      "notes": "Solo acción de escaneo simulado; no hay búsqueda manual en este frame."
+    },
+    {
+      "order": 10, "frameLabel": "10", "name": "Resultado y equivalentes",
+      "frameNodeId": "8:1543", "visualNodeId": "8:1543", "navigationSourceNodeId": "8:1543",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/results", "codeRouteName": "medicines-results",
+      "codePath": "lib/features/medicines/screens/results_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/10-resultado-equivalentes-8-1543.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Losartán 50 mg", "target": "medicines-prescription-losartan" },
+        { "action": "Losartán potásico 50 mg", "target": "medicines-prescription-losartan-potasico" },
+        { "action": "Losartán MK 50 mg", "target": "medicines-prescription-losartan-mk" }
+      ],
+      "notes": "Resultado Losartán 50 mg y dos equivalentes."
+    },
+    {
+      "order": 11, "frameLabel": "11.1", "name": "Datos de la fórmula (Losartán 50 mg)",
+      "frameNodeId": "8:1564", "visualNodeId": "8:1564", "navigationSourceNodeId": "8:1564",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/prescription/losartan", "codeRouteName": "medicines-prescription-losartan",
+      "codePath": "lib/features/medicines/screens/prescription_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/11.1-datos-formula-losartan-8-1564.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Continuar", "target": "medicines-treatment-losartan" } ],
+      "notes": "Dosis 1 tableta/día, cantidad 30, vigencia 12/2026. Variante por medicamento del mismo componente que 11.2/11.3."
+    },
+    {
+      "order": 12, "frameLabel": "11.2", "name": "Datos de la fórmula (Losartán potásico 50 mg)",
+      "frameNodeId": "8:1586", "visualNodeId": "8:1586", "navigationSourceNodeId": "8:1586",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/prescription/losartan-potasico", "codeRouteName": "medicines-prescription-losartan-potasico",
+      "codePath": "lib/features/medicines/screens/prescription_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/11.2-datos-formula-losartan-potasico-8-1586.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Continuar", "target": "medicines-treatment-losartan-potasico" } ],
+      "notes": "Misma estructura que 11.1; cambia el medicamento (modelo local)."
+    },
+    {
+      "order": 13, "frameLabel": "11.3", "name": "Datos de la fórmula (Losartán MK 50 mg)",
+      "frameNodeId": "8:1608", "visualNodeId": "8:1608", "navigationSourceNodeId": "8:1608",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/prescription/losartan-mk", "codeRouteName": "medicines-prescription-losartan-mk",
+      "codePath": "lib/features/medicines/screens/prescription_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/11.3-datos-formula-losartan-mk-8-1608.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Continuar", "target": "medicines-treatment-losartan-mk" } ],
+      "notes": "Misma estructura que 11.1; cambia el medicamento (modelo local)."
+    },
+    {
+      "order": 14, "frameLabel": "12.1", "name": "Confirma tus datos (Sanitas)",
+      "frameNodeId": "8:1630", "visualNodeId": "8:1630", "navigationSourceNodeId": "8:1630",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M3",
+      "codeRoute": "/signup/eps/confirm/sanitas", "codeRouteName": "signup-eps-confirm-sanitas",
+      "codePath": "lib/features/affiliation/screens/confirm_data_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/12.1-confirma-datos-sanitas-8-1630.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Confirmar", "target": "signup-eps-validating" } ],
+      "notes": "Documento enmascarado 52 ••• 890, nombre María P., EPS Sanitas. Mismo componente que 12.2 parametrizado por EPS."
+    },
+    {
+      "order": 15, "frameLabel": "12.2", "name": "Confirma tus datos (Compensar)",
+      "frameNodeId": "8:1648", "visualNodeId": "8:1648", "navigationSourceNodeId": "8:1648",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M3",
+      "codeRoute": "/signup/eps/confirm/compensar", "codeRouteName": "signup-eps-confirm-compensar",
+      "codePath": "lib/features/affiliation/screens/confirm_data_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/12.2-confirma-datos-compensar-8-1648.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Confirmar", "target": "signup-eps-validating" } ],
+      "notes": "Igual a 12.1; EPS Compensar."
+    },
+    {
+      "order": 16, "frameLabel": "13.1", "name": "Tu tratamiento (Losartán 50 mg)",
+      "frameNodeId": "8:1666", "visualNodeId": "8:1666", "navigationSourceNodeId": "8:1666",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/treatment/losartan", "codeRouteName": "medicines-treatment-losartan",
+      "codePath": "lib/features/medicines/screens/treatment_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/13.1-tu-tratamiento-losartan-8-1666.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Buscar dónde reclamar", "target": "locations-filters" } ],
+      "notes": "Tarjeta del medicamento, 30 tabletas."
+    },
+    {
+      "order": 17, "frameLabel": "13.2", "name": "Tu tratamiento (Losartán potásico 50 mg)",
+      "frameNodeId": "8:1681", "visualNodeId": "8:1681", "navigationSourceNodeId": "8:1681",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/treatment/losartan-potasico", "codeRouteName": "medicines-treatment-losartan-potasico",
+      "codePath": "lib/features/medicines/screens/treatment_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/13.2-tu-tratamiento-losartan-potasico-8-1681.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Buscar dónde reclamar", "target": "locations-filters" } ],
+      "notes": "Variante por equivalente seleccionado."
+    },
+    {
+      "order": 18, "frameLabel": "13.3", "name": "Tu tratamiento (Losartán MK 50 mg)",
+      "frameNodeId": "8:1696", "visualNodeId": "8:1696", "navigationSourceNodeId": "8:1696",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M5",
+      "codeRoute": "/medicines/treatment/losartan-mk", "codeRouteName": "medicines-treatment-losartan-mk",
+      "codePath": "lib/features/medicines/screens/treatment_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/13.3-tu-tratamiento-losartan-mk-8-1696.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Buscar dónde reclamar", "target": "locations-filters" } ],
+      "notes": "Variante por equivalente seleccionado."
+    },
+    {
+      "order": 19, "frameLabel": "14", "name": "Filtros: EPS y ciudad",
+      "frameNodeId": "24:35", "visualNodeId": "24:35", "navigationSourceNodeId": "24:35",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M6",
+      "codeRoute": "/locations/filters", "codeRouteName": "locations-filters",
+      "codePath": "lib/features/locations/screens/filters_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/14-filtros-eps-ciudad-24-35.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Aplicar filtros", "target": "locations" } ],
+      "notes": "EPS Compensar, ciudad Bogotá, chips 1/3/5 km/Cualquiera; 3 km seleccionado en Figma pero debe poder cambiarse visualmente."
+    },
+    {
+      "order": 20, "frameLabel": "15", "name": "Puntos en convenio",
+      "frameNodeId": "24:60", "visualNodeId": "24:60", "navigationSourceNodeId": "24:60",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M6",
+      "codeRoute": "/locations", "codeRouteName": "locations",
+      "codePath": "lib/features/locations/screens/points_list_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/15-puntos-en-convenio-24-60.png", "captured": true },
+      "assets": {
+        "status": "confirmed",
+        "items": [
+          { "name": "icon-back", "nodeId": "24:65", "format": "svg", "size": "20x16" },
+          { "name": "icon-nav-home", "nodeId": "24:91", "format": "svg", "size": "19x16", "shared": "bottom nav, también en frame 08" },
+          { "name": "icon-nav-cuenta", "nodeId": "24:96", "format": "svg", "size": "15x15", "shared": "bottom nav" },
+          { "name": "icon-nav-medicinas", "nodeId": "24:101", "format": "svg", "size": "13x17", "shared": "bottom nav" },
+          { "name": "icon-nav-reclamar", "nodeId": "24:107", "format": "svg", "size": "13x19", "shared": "bottom nav" },
+          { "name": "icon-nav-turno", "nodeId": "24:112", "format": "svg", "size": "19x15", "shared": "bottom nav" }
+        ],
+        "note": "URLs de export son temporales (~7 días); se re-descargan con download_assets en el checkpoint que implemente cada icono."
+      },
+      "outgoingInteractions": [
+        { "action": "Éxito Norte (disponible)", "target": "locations-detail" },
+        { "action": "Cruz Verde 127 (sin dato)", "target": "locations-detail" },
+        { "action": "Audifarma Chapinero (agotado)", "target": "locations-detail" },
+        { "action": "Filtros", "target": "locations-filters" },
+        { "action": "nav: Reclamar (peach activo en este frame)", "target": "inert — ver decisión 4 sección 21 del plan" }
+      ],
+      "notes": "Frame usado para confirmar los 3 colores semánticos de badge (disponible #B6F2CF/#00210F, sin dato #FFE0B0/#2A1700, agotado #FFDAD4/#410E0B) y el estilo de tarjeta (radio 12, borde #DDE4E3)."
+    },
+    {
+      "order": 21, "frameLabel": "16", "name": "Ficha del punto",
+      "frameNodeId": "24:115", "visualNodeId": "24:115", "navigationSourceNodeId": "24:115",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M6",
+      "codeRoute": "/locations/detail", "codeRouteName": "locations-detail",
+      "codePath": "lib/features/locations/screens/point_detail_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/16-ficha-del-punto-24-115.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Sacar turno aquí", "target": "locations-availability" },
+        { "action": "Llamar al punto", "target": "inert (respuesta visual local, no llamada real)" }
+      ],
+      "notes": "Éxito Norte, dirección, horario, placeholder de mapa."
+    },
+    {
+      "order": 22, "frameLabel": "17", "name": "Disponibilidad con sello",
+      "frameNodeId": "24:137", "visualNodeId": "24:137", "navigationSourceNodeId": "24:137",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M6",
+      "codeRoute": "/locations/availability", "codeRouteName": "locations-availability",
+      "codePath": "lib/features/locations/screens/availability_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/17-disponibilidad-sello-24-137.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Elegir turno", "target": "appointments-schedule" } ],
+      "notes": "Sello 'Disponible', actualización hace 2h, advertencia de variabilidad."
+    },
+    {
+      "order": 23, "frameLabel": "18", "name": "Elegir día y franja",
+      "frameNodeId": "24:151", "visualNodeId": "24:151", "navigationSourceNodeId": "24:151",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M7",
+      "codeRoute": "/appointments/schedule", "codeRouteName": "appointments-schedule",
+      "codePath": "lib/features/appointments/screens/schedule_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/18-elegir-dia-franja-24-151.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Continuar", "target": "appointments-confirm" } ],
+      "notes": "Chips Hoy/Mañana/Mié 20 y 8-10/10-12/2-4; Hoy y 10-12 seleccionados en Figma pero deben poder cambiarse."
+    },
+    {
+      "order": 24, "frameLabel": "19", "name": "Confirmar el turno",
+      "frameNodeId": "24:203", "visualNodeId": "24:203", "navigationSourceNodeId": "24:203",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M7",
+      "codeRoute": "/appointments/confirm", "codeRouteName": "appointments-confirm",
+      "codePath": "lib/features/appointments/screens/confirm_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/19-confirmar-turno-24-203.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Confirmar turno", "target": "appointments-confirmed" } ],
+      "notes": "Texto 'Reservando tu turno…' se conserva como estado visible diseñado, sin loader adicional (decisión 11, sección 21 del plan)."
+    },
+    {
+      "order": 25, "frameLabel": "20", "name": "Turno con hora estimada",
+      "frameNodeId": "24:225", "visualNodeId": "24:225", "navigationSourceNodeId": "24:225",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M7",
+      "codeRoute": "/appointments/confirmed", "codeRouteName": "appointments-confirmed",
+      "codePath": "lib/features/appointments/screens/confirmed_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/20-turno-hora-estimada-24-225.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": "Ticket cyan por confirmar con get_design_context en M7 (sección 8: 'cyan del ticket' aún no extraído)." },
+      "outgoingInteractions": [ { "action": "Ver mis turnos", "target": "appointments" } ],
+      "notes": "Código A-045, Éxito Norte, hora estimada 10:30 AM, avisos WhatsApp/correo."
+    },
+    {
+      "order": 26, "frameLabel": "21", "name": "Mis turnos",
+      "frameNodeId": "24:248", "visualNodeId": "24:248", "navigationSourceNodeId": "24:248",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M7",
+      "codeRoute": "/appointments", "codeRouteName": "appointments",
+      "codePath": "lib/features/appointments/screens/appointments_list_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/21-mis-turnos-24-248.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "nav: Turno (activo)", "target": "appointments (activo)" }
+      ],
+      "notes": "A-045 activo/hoy 10:30 y B-012 reclamado/ayer. Las tarjetas se nombran 'go-turno-*' pero no reaccionan en el prototipo (decisión 6, sección 21)."
+    },
+    {
+      "order": 27, "frameLabel": "22", "name": "¿Recibiste tu medicamento? (modal)",
+      "frameNodeId": "65:85", "visualNodeId": "65:85", "navigationSourceNodeId": "65:85",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M8",
+      "codeRoute": "/home/pickup-decision", "codeRouteName": "home-pickup-decision",
+      "codePath": "lib/features/home/screens/pickup_decision_sheet.dart",
+      "referenceCapture": { "path": "docs/design/references/22-recibiste-tu-medicamento-modal-65-85.png", "captured": true },
+      "assets": { "status": "confirmed", "items": [], "note": "Sin iconos/SVG en este nodo; solo formas y texto (confirmado por get_design_context)." },
+      "outgoingInteractions": [
+        { "action": "Sí, completo", "target": "home-pickup-complete" },
+        { "action": "Solo una parte", "target": "appointments-pending-registration" },
+        { "action": "No había", "target": "inert — permanece en el bottom sheet" }
+      ],
+      "notes": "Bottom sheet sobre Inicio. Confirma scrim negro 45% opacidad, radio superior 24, handle 40x4 #DDE4E3, botón primario #127E76, botones outline borde #8F9998 1.5px."
+    },
+    {
+      "order": 28, "frameLabel": "23", "name": "Registrar lo pendiente",
+      "frameNodeId": "24:338", "visualNodeId": "24:338", "navigationSourceNodeId": "24:338",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M8",
+      "codeRoute": "/appointments/pending-registration", "codeRouteName": "appointments-pending-registration",
+      "codePath": "lib/features/appointments/screens/pending_registration_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/23-registrar-pendiente-24-338.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [ { "action": "Registrar pendiente", "target": "home-pickup-complete" } ],
+      "notes": "Metformina 850 mg, cantidad pendiente 30, aviso de 48h. Inconsistencia conocida: el reclamo visible es de Losartán pero este frame muestra Metformina (decisión 8, sección 21)."
+    },
+    {
+      "order": 29, "frameLabel": "23", "name": "Reclamo completado (modal)",
+      "frameNodeId": "65:113", "visualNodeId": "65:113", "navigationSourceNodeId": "65:113",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M8",
+      "codeRoute": "/home/pickup-complete", "codeRouteName": "home-pickup-complete",
+      "codePath": "lib/features/home/screens/pickup_complete_sheet.dart",
+      "referenceCapture": { "path": "docs/design/references/23-reclamo-completado-modal-65-113.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [
+        { "action": "Ver historial", "target": "history" },
+        { "action": "Calificar el punto", "target": "inert" }
+      ],
+      "notes": "Bottom sheet de éxito con check. Punto de convergencia de 'Sí, completo' y del flujo parcial (decisión 7, sección 21)."
+    },
+    {
+      "order": 30, "frameLabel": "25", "name": "Historial del reclamo",
+      "frameNodeId": "24:374", "visualNodeId": "24:374", "navigationSourceNodeId": "24:374",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M8",
+      "codeRoute": "/history", "codeRouteName": "history",
+      "codePath": "lib/features/history/screens/history_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/25-historial-reclamo-24-374.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [],
+      "notes": "Losartán completo en Éxito Norte y Metformina parcial en Cruz Verde; badges verde/ámbar."
+    },
+    {
+      "order": 31, "frameLabel": "26", "name": "Mis turnos (sin activos)",
+      "frameNodeId": "24:420", "visualNodeId": "24:420", "navigationSourceNodeId": "24:420",
+      "dimensions": "360x800",
+      "codeStatus": "placeholder", "ownerCheckpoint": "M7",
+      "codeRoute": "/appointments/empty", "codeRouteName": "appointments-empty",
+      "codePath": "lib/features/appointments/screens/appointments_list_screen.dart",
+      "referenceCapture": { "path": "docs/design/references/26-mis-turnos-sin-activos-24-420.png", "captured": false },
+      "assets": { "status": "pending-extraction", "notes": [] },
+      "outgoingInteractions": [],
+      "notes": "Estado alternativo de 21 (ambos turnos Reclamado). No está enlazado desde el flujo principal; se expone como ruta propia para poder validarlo de forma aislada."
+    }
+  ]
+}
