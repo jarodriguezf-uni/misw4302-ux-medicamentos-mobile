@@ -46,7 +46,7 @@ void main() {
 
       await tester.tap(find.byKey(const Key('eps-status-continue')));
       await tester.pumpAndSettle();
-      expect(find.text('08 — Inicio'), findsOneWidget);
+      expect(find.text('Hola, María'), findsOneWidget);
     },
   );
 }

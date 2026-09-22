@@ -4,6 +4,7 @@ import '../features/affiliation/screens/eps_confirm_screen.dart';
 import '../features/affiliation/screens/eps_screen.dart';
 import '../features/affiliation/screens/eps_status_screen.dart';
 import '../features/affiliation/screens/eps_validating_screen.dart';
+import '../features/home/screens/home_screen.dart';
 import '../features/onboarding/screens/login_screen.dart';
 import '../features/onboarding/screens/signup_screen.dart';
 import '../features/onboarding/screens/verify_code_screen.dart';
@@ -67,12 +68,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/home',
       name: 'home',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '08',
-        frameName: 'Inicio',
-        frameNodeId: '8:1470',
-        checkpoint: 'M4',
-      ),
+      builder: (context, state) => const HomeScreen(),
       routes: [
         GoRoute(
           path: 'pickup-decision',
