@@ -1,14 +1,15 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/affiliation/screens/eps_confirm_screen.dart';
+import '../features/affiliation/screens/eps_screen.dart';
+import '../features/affiliation/screens/eps_status_screen.dart';
+import '../features/affiliation/screens/eps_validating_screen.dart';
 import '../features/onboarding/screens/login_screen.dart';
 import '../features/onboarding/screens/signup_screen.dart';
 import '../features/onboarding/screens/verify_code_screen.dart';
 import '../features/onboarding/screens/welcome_screen.dart';
 import '../shared/widgets/placeholder_screen.dart';
 
-// Rutas de las 31 pantallas del inventario móvil. En M1 apuntan a
-// PlaceholderScreen; cada checkpoint reemplaza su tramo. `name` coincide con
-// codeRouteName en docs/design/design-manifest.json.
 final appRouter = GoRouter(
   initialLocation: '/welcome',
   routes: [
@@ -35,52 +36,29 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'eps',
           name: 'signup-eps',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '05',
-            frameName: 'Elegir EPS',
-            frameNodeId: '8:1426',
-            checkpoint: 'M3',
-          ),
+          builder: (context, state) => const EpsScreen(),
           routes: [
             GoRoute(
               path: 'validating',
               name: 'signup-eps-validating',
-              builder: (context, state) => const PlaceholderScreen(
-                frameNumber: '06',
-                frameName: 'Validando afiliación',
-                frameNodeId: '8:1445',
-                checkpoint: 'M3',
-              ),
+              builder: (context, state) => const EpsValidatingScreen(),
             ),
             GoRoute(
               path: 'status',
               name: 'signup-eps-status',
-              builder: (context, state) => const PlaceholderScreen(
-                frameNumber: '07',
-                frameName: 'Estado de la afiliación',
-                frameNodeId: '8:1456',
-                checkpoint: 'M3',
-              ),
+              builder: (context, state) => const EpsStatusScreen(),
             ),
             GoRoute(
               path: 'confirm/sanitas',
               name: 'signup-eps-confirm-sanitas',
-              builder: (context, state) => const PlaceholderScreen(
-                frameNumber: '12.1',
-                frameName: 'Confirma tus datos (Sanitas)',
-                frameNodeId: '8:1630',
-                checkpoint: 'M3',
-              ),
+              builder: (context, state) =>
+                  const EpsConfirmScreen(epsName: 'Sanitas'),
             ),
             GoRoute(
               path: 'confirm/compensar',
               name: 'signup-eps-confirm-compensar',
-              builder: (context, state) => const PlaceholderScreen(
-                frameNumber: '12.2',
-                frameName: 'Confirma tus datos (Compensar)',
-                frameNodeId: '8:1648',
-                checkpoint: 'M3',
-              ),
+              builder: (context, state) =>
+                  const EpsConfirmScreen(epsName: 'Compensar'),
             ),
           ],
         ),
