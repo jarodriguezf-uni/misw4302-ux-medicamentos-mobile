@@ -5,6 +5,10 @@ import '../features/affiliation/screens/eps_screen.dart';
 import '../features/affiliation/screens/eps_status_screen.dart';
 import '../features/affiliation/screens/eps_validating_screen.dart';
 import '../features/home/screens/home_screen.dart';
+import '../features/medicines/screens/medicine_result_screen.dart';
+import '../features/medicines/screens/medicine_search_screen.dart';
+import '../features/medicines/screens/prescription_screen.dart';
+import '../features/medicines/screens/treatment_screen.dart';
 import '../features/onboarding/screens/login_screen.dart';
 import '../features/onboarding/screens/signup_screen.dart';
 import '../features/onboarding/screens/verify_code_screen.dart';
@@ -95,81 +99,59 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/medicines/search',
       name: 'medicines-search',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '09',
-        frameName: 'Buscar medicamento',
-        frameNodeId: '8:1509',
-        checkpoint: 'M5',
-      ),
+      builder: (context, state) => const MedicineSearchScreen(),
     ),
     GoRoute(
       path: '/medicines/results',
       name: 'medicines-results',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '10',
-        frameName: 'Resultado y equivalentes',
-        frameNodeId: '8:1543',
-        checkpoint: 'M5',
-      ),
+      builder: (context, state) => const MedicineResultScreen(),
     ),
     GoRoute(
       path: '/medicines/prescription/losartan',
       name: 'medicines-prescription-losartan',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '11.1',
-        frameName: 'Datos de la fórmula (Losartán 50 mg)',
-        frameNodeId: '8:1564',
-        checkpoint: 'M5',
+      builder: (context, state) => const PrescriptionScreen(
+        medicineName: 'Losartán 50 mg',
+        nextRouteName: 'medicines-treatment-losartan',
       ),
     ),
     GoRoute(
       path: '/medicines/prescription/losartan-potasico',
       name: 'medicines-prescription-losartan-potasico',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '11.2',
-        frameName: 'Datos de la fórmula (Losartán potásico 50 mg)',
-        frameNodeId: '8:1586',
-        checkpoint: 'M5',
+      builder: (context, state) => const PrescriptionScreen(
+        medicineName: 'Losartán potásico 50 mg',
+        nextRouteName: 'medicines-treatment-losartan-potasico',
       ),
     ),
     GoRoute(
       path: '/medicines/prescription/losartan-mk',
       name: 'medicines-prescription-losartan-mk',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '11.3',
-        frameName: 'Datos de la fórmula (Losartán MK 50 mg)',
-        frameNodeId: '8:1608',
-        checkpoint: 'M5',
+      builder: (context, state) => const PrescriptionScreen(
+        medicineName: 'Losartán MK 50 mg',
+        nextRouteName: 'medicines-treatment-losartan-mk',
       ),
     ),
     GoRoute(
       path: '/medicines/treatment/losartan',
       name: 'medicines-treatment-losartan',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '13.1',
-        frameName: 'Tu tratamiento (Losartán 50 mg)',
-        frameNodeId: '8:1666',
-        checkpoint: 'M5',
+      builder: (context, state) => const TreatmentScreen(
+        medicineName: 'Losartán 50 mg',
+        quantityLabel: '30 tabletas',
       ),
     ),
     GoRoute(
       path: '/medicines/treatment/losartan-potasico',
       name: 'medicines-treatment-losartan-potasico',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '13.2',
-        frameName: 'Tu tratamiento (Losartán potásico 50 mg)',
-        frameNodeId: '8:1681',
-        checkpoint: 'M5',
+      builder: (context, state) => const TreatmentScreen(
+        medicineName: 'Losartán potásico 50 mg',
+        quantityLabel: '30 tabletas',
       ),
     ),
     GoRoute(
       path: '/medicines/treatment/losartan-mk',
       name: 'medicines-treatment-losartan-mk',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '13.3',
-        frameName: 'Tu tratamiento (Losartán MK 50 mg)',
-        frameNodeId: '8:1696',
-        checkpoint: 'M5',
+      builder: (context, state) => const TreatmentScreen(
+        medicineName: 'Losartán MK 50 mg',
+        quantityLabel: '30 tabletas',
       ),
     ),
     GoRoute(

@@ -29,7 +29,7 @@ void main() {
 
     await tester.tap(find.byKey(const Key('nav-medicinas')));
     await tester.pumpAndSettle();
-    expect(find.text('09 — Buscar medicamento'), findsOneWidget);
+    expect(find.text('Buscar medicamento'), findsOneWidget);
 
     appRouter.goNamed('home');
     await tester.pumpAndSettle();
