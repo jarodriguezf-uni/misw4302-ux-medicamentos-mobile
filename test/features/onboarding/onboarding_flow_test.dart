@@ -71,6 +71,6 @@ void main() {
     await tester.tap(find.byKey(const Key('login-submit')));
     await tester.pumpAndSettle();
 
-    expect(find.text('08 — Inicio'), findsOneWidget);
+    expect(find.text('Hola, María'), findsOneWidget);
   });
 }
