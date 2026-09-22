@@ -24,36 +24,36 @@ class MedicationBottomNavigation extends StatelessWidget {
         height: AppSpacing.bottomNavHeight,
         child: Row(
           children: [
-              _NavigationItem(
-                label: 'Inicio',
-                assetName: 'assets/icons/nav-home.svg',
-                selected: selectedTab == MedicationTab.home,
-                onTap: () => context.goNamed('home'),
-              ),
-              _NavigationItem(
-                label: 'Cuenta',
-                assetName: 'assets/icons/nav-account.svg',
-                selected: selectedTab == MedicationTab.account,
-                onTap: () {},
-              ),
-              _NavigationItem(
-                label: 'Medicinas',
-                assetName: 'assets/icons/nav-medicines.svg',
-                selected: selectedTab == MedicationTab.medicines,
-                onTap: () => context.goNamed('medicines-search'),
-              ),
-              _NavigationItem(
-                label: 'Reclamar',
-                assetName: 'assets/icons/nav-claim.svg',
-                selected: selectedTab == MedicationTab.claim,
-                onTap: () {},
-              ),
-              _NavigationItem(
-                label: 'Turno',
-                assetName: 'assets/icons/nav-appointments.svg',
-                selected: selectedTab == MedicationTab.appointments,
-                onTap: () => context.goNamed('appointments'),
-              ),
+            _NavigationItem(
+              label: 'Inicio',
+              assetName: 'assets/icons/nav-home.svg',
+              selected: selectedTab == MedicationTab.home,
+              onTap: () => context.goNamed('home'),
+            ),
+            _NavigationItem(
+              label: 'Cuenta',
+              assetName: 'assets/icons/nav-account.svg',
+              selected: selectedTab == MedicationTab.account,
+              onTap: () {},
+            ),
+            _NavigationItem(
+              label: 'Medicinas',
+              assetName: 'assets/icons/nav-medicines.svg',
+              selected: selectedTab == MedicationTab.medicines,
+              onTap: () => context.goNamed('medicines-search'),
+            ),
+            _NavigationItem(
+              label: 'Reclamar',
+              assetName: 'assets/icons/nav-claim.svg',
+              selected: selectedTab == MedicationTab.claim,
+              onTap: () {},
+            ),
+            _NavigationItem(
+              label: 'Turno',
+              assetName: 'assets/icons/nav-appointments.svg',
+              selected: selectedTab == MedicationTab.appointments,
+              onTap: () => context.goNamed('appointments'),
+            ),
           ],
         ),
       ),
@@ -96,9 +96,8 @@ class _NavigationItem extends StatelessWidget {
                     height: 30,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: selected
-                          ? AppColors.tabActiveBg
-                          : Colors.transparent,
+                      color:
+                          selected ? AppColors.tabActiveBg : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: SvgPicture.asset(
@@ -106,9 +105,7 @@ class _NavigationItem extends StatelessWidget {
                       width: AppSpacing.iconSize,
                       height: AppSpacing.iconSize,
                       colorFilter: ColorFilter.mode(
-                        selected
-                            ? AppColors.tabActiveFg
-                            : AppColors.textMuted,
+                        selected ? AppColors.tabActiveFg : AppColors.textMuted,
                         BlendMode.srcIn,
                       ),
                     ),
