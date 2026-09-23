@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 
@@ -19,73 +20,77 @@ class WelcomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.primary,
         body: SafeArea(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.screenPadding,
+          child: ResponsiveScreenWidth(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 51),
-                        const Center(child: _MedicineMark()),
-                        const SizedBox(height: 34),
-                        Text(
-                          'Reclama tus\nmedicamentos\nsin filas ni viajes en vano',
-                          style: AppTextStyles.heroTitle.copyWith(
-                            color: AppColors.onPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Consulta el stock antes de salir y saca tu\nturno.',
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            color: AppColors.onPrimary,
-                            height: 1.3,
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                        SizedBox(
-                          width: double.infinity,
-                          height: AppSpacing.buttonHeight,
-                          child: FilledButton(
-                            key: const Key('welcome-create-account'),
-                            style: FilledButton.styleFrom(
-                              backgroundColor: AppColors.onPrimary,
-                              foregroundColor: AppColors.primary,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.screenHorizontalPadding,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 51),
+                          const Center(child: _MedicineMark()),
+                          const SizedBox(height: 34),
+                          Text(
+                            'Reclama tus\nmedicamentos\nsin filas ni viajes en vano',
+                            style: AppTextStyles.heroTitle.copyWith(
+                              color: AppColors.onPrimary,
                             ),
-                            onPressed: () => context.goNamed('signup'),
-                            child: const Text('Crear cuenta'),
                           ),
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                        SizedBox(
-                          width: double.infinity,
-                          height: AppSpacing.buttonHeight,
-                          child: OutlinedButton(
-                            key: const Key('welcome-login'),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: AppColors.onPrimary,
-                              side: const BorderSide(
-                                color: AppColors.onPrimary,
-                                width: 1.5,
+                          const SizedBox(height: 4),
+                          Text(
+                            'Consulta el stock antes de salir y saca tu\nturno.',
+                            style: AppTextStyles.bodyMedium.copyWith(
+                              color: AppColors.onPrimary,
+                              height: 1.3,
+                            ),
+                          ),
+                          const SizedBox(height: 30),
+                          SizedBox(
+                            width: double.infinity,
+                            height: AppSpacing.buttonHeight,
+                            child: FilledButton(
+                              key: const Key('welcome-create-account'),
+                              style: FilledButton.styleFrom(
+                                backgroundColor: AppColors.onPrimary,
+                                foregroundColor: AppColors.primary,
                               ),
+                              onPressed: () => context.goNamed('signup'),
+                              child: const Text('Crear cuenta'),
                             ),
-                            onPressed: () => context.goNamed('login'),
-                            child: const Text('Ya tengo cuenta'),
                           ),
-                        ),
-                        const SizedBox(height: AppSpacing.screenPadding),
-                      ],
+                          const SizedBox(height: AppSpacing.lg),
+                          SizedBox(
+                            width: double.infinity,
+                            height: AppSpacing.buttonHeight,
+                            child: OutlinedButton(
+                              key: const Key('welcome-login'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: AppColors.onPrimary,
+                                side: const BorderSide(
+                                  color: AppColors.onPrimary,
+                                  width: 1.5,
+                                ),
+                              ),
+                              onPressed: () => context.goNamed('login'),
+                              child: const Text('Ya tengo cuenta'),
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.screenPadding),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -110,12 +110,15 @@ class _NavigationItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    label,
-                    style: AppTextStyles.navLabel.copyWith(
-                      color: selected
-                          ? AppColors.tabActiveFg
-                          : AppColors.textMuted,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      label,
+                      style: AppTextStyles.navLabel.copyWith(
+                        color: selected
+                            ? AppColors.tabActiveFg
+                            : AppColors.textMuted,
+                      ),
                     ),
                   ),
                 ],

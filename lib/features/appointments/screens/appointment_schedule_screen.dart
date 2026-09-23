@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
@@ -38,65 +39,67 @@ class _AppointmentScheduleScreenState extends State<AppointmentScheduleScreen> {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                OnboardingBackTitle(
-                  title: 'Elegir turno',
-                  onBack: () => context.pop(),
-                ),
-                const SizedBox(height: 26),
-                Text('DÍA', style: AppTextStyles.overline),
-                const SizedBox(height: AppSpacing.sm),
-                Wrap(
-                  spacing: AppSpacing.sm,
-                  runSpacing: AppSpacing.sm,
-                  children: [
-                    for (final day in _days)
-                      DaySlotChip(
-                        chipKey: Key('day-${day.toLowerCase()}'),
-                        label: day,
-                        selected: day == _selectedDay,
-                        onTap: () => setState(() => _selectedDay = day),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                Text('FRANJA HORARIA', style: AppTextStyles.overline),
-                const SizedBox(height: AppSpacing.sm),
-                Wrap(
-                  spacing: AppSpacing.sm,
-                  runSpacing: AppSpacing.sm,
-                  children: [
-                    for (final slot in _slotTimes.keys)
-                      DaySlotChip(
-                        chipKey: Key(
-                          'slot-${slot.replaceAll('–', '-').replaceAll(' ', '')}',
+          child: ResponsiveScreenWidth(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.screenHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  OnboardingBackTitle(
+                    title: 'Elegir turno',
+                    onBack: () => context.pop(),
+                  ),
+                  const SizedBox(height: 26),
+                  Text('DÍA', style: AppTextStyles.overline),
+                  const SizedBox(height: AppSpacing.sm),
+                  Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: [
+                      for (final day in _days)
+                        DaySlotChip(
+                          chipKey: Key('day-${day.toLowerCase()}'),
+                          label: day,
+                          selected: day == _selectedDay,
+                          onTap: () => setState(() => _selectedDay = day),
                         ),
-                        label: slot,
-                        selected: slot == _selectedSlot,
-                        onTap: () => setState(() => _selectedSlot = slot),
+                    ],
+                  ),
+                  const SizedBox(height: AppSpacing.lg),
+                  Text('FRANJA HORARIA', style: AppTextStyles.overline),
+                  const SizedBox(height: AppSpacing.sm),
+                  Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: [
+                      for (final slot in _slotTimes.keys)
+                        DaySlotChip(
+                          chipKey: Key(
+                            'slot-${slot.replaceAll('–', '-').replaceAll(' ', '')}',
+                          ),
+                          label: slot,
+                          selected: slot == _selectedSlot,
+                          onTap: () => setState(() => _selectedSlot = slot),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  OnboardingPrimaryButton(
+                    label: 'Continuar',
+                    buttonKey: const Key('schedule-continue'),
+                    onPressed: () => context.pushNamed(
+                      'appointments-confirm',
+                      extra: AppointmentSelection(
+                        dayLabel: _selectedDay,
+                        timeLabel: _slotTimes[_selectedSlot]!,
                       ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                OnboardingPrimaryButton(
-                  label: 'Continuar',
-                  buttonKey: const Key('schedule-continue'),
-                  onPressed: () => context.pushNamed(
-                    'appointments-confirm',
-                    extra: AppointmentSelection(
-                      dayLabel: _selectedDay,
-                      timeLabel: _slotTimes[_selectedSlot]!,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
