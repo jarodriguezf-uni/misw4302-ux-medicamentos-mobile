@@ -79,7 +79,7 @@ class ClaimModalShell extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 22),
-                      Expanded(child: child),
+                      Expanded(child: SingleChildScrollView(child: child)),
                     ],
                   ),
                 ),

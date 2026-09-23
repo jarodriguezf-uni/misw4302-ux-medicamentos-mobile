@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
@@ -20,41 +21,43 @@ class AppointmentConfirmedScreen extends StatelessWidget {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                OnboardingBackTitle(
-                  title: 'Turno confirmado',
-                  onBack: () => context.pop(),
-                ),
-                const SizedBox(height: 26),
-                const TurnTicketCard(
-                  code: 'A-045',
-                  point: 'Éxito Norte',
-                  etaLabel: '10:30 AM',
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                const _NotifyRow(
-                  icon: Icons.chat_bubble_outline,
-                  label: 'Te lo enviaremos por WhatsApp',
-                ),
-                const SizedBox(height: AppSpacing.md),
-                const _NotifyRow(
-                  icon: Icons.mail_outline,
-                  label: 'y por correo electrónico',
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                OnboardingPrimaryButton(
-                  label: 'Ver mis turnos',
-                  buttonKey: const Key('confirmed-view-appointments'),
-                  onPressed: () => context.goNamed('appointments'),
-                ),
-              ],
+          child: ResponsiveScreenWidth(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.screenHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  OnboardingBackTitle(
+                    title: 'Turno confirmado',
+                    onBack: () => context.pop(),
+                  ),
+                  const SizedBox(height: 26),
+                  const TurnTicketCard(
+                    code: 'A-045',
+                    point: 'Éxito Norte',
+                    etaLabel: '10:30 AM',
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  const _NotifyRow(
+                    icon: Icons.chat_bubble_outline,
+                    label: 'Te lo enviaremos por WhatsApp',
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  const _NotifyRow(
+                    icon: Icons.mail_outline,
+                    label: 'y por correo electrónico',
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  OnboardingPrimaryButton(
+                    label: 'Ver mis turnos',
+                    buttonKey: const Key('confirmed-view-appointments'),
+                    onPressed: () => context.goNamed('appointments'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -75,7 +78,7 @@ class _NotifyRow extends StatelessWidget {
       children: [
         Icon(icon, size: 20, color: AppColors.primary),
         const SizedBox(width: AppSpacing.sm),
-        Text(label, style: AppTextStyles.bodyMedium),
+        Expanded(child: Text(label, style: AppTextStyles.bodyMedium)),
       ],
     );
   }

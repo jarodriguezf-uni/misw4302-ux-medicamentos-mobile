@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
@@ -27,39 +28,41 @@ class TreatmentScreen extends StatelessWidget {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                OnboardingBackTitle(
-                  title: 'Tu tratamiento',
-                  onBack: () => context.canPop()
-                      ? context.pop()
-                      : context.goNamed('home'),
-                ),
-                const SizedBox(height: 26),
-                MedicineRow(
-                  rowKey: const Key('treatment-medicine-row'),
-                  title: medicineName,
-                  subtitle: quantityLabel,
-                  onTap: () {},
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                Text(
-                  'Medicamentos de tu fórmula',
-                  style: AppTextStyles.bodySmall,
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                OnboardingPrimaryButton(
-                  label: 'Buscar dónde reclamar',
-                  buttonKey: const Key('treatment-find-location'),
-                  onPressed: () => context.goNamed('locations-filters'),
-                ),
-              ],
+          child: ResponsiveScreenWidth(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.screenHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  OnboardingBackTitle(
+                    title: 'Tu tratamiento',
+                    onBack: () => context.canPop()
+                        ? context.pop()
+                        : context.goNamed('home'),
+                  ),
+                  const SizedBox(height: 26),
+                  MedicineRow(
+                    rowKey: const Key('treatment-medicine-row'),
+                    title: medicineName,
+                    subtitle: quantityLabel,
+                    onTap: () {},
+                  ),
+                  const SizedBox(height: AppSpacing.lg),
+                  Text(
+                    'Medicamentos de tu fórmula',
+                    style: AppTextStyles.bodySmall,
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  OnboardingPrimaryButton(
+                    label: 'Buscar dónde reclamar',
+                    buttonKey: const Key('treatment-find-location'),
+                    onPressed: () => context.goNamed('locations-filters'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

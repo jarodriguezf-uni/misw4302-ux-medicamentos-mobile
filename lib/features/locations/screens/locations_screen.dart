@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../home/widgets/medication_bottom_navigation.dart';
@@ -59,89 +60,93 @@ class _LocationsScreenState extends State<LocationsScreen> {
         ),
         body: SafeArea(
           bottom: false,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.screenPadding,
-                  22,
-                  AppSpacing.screenPadding,
-                  18,
-                ),
-                child: Text(
-                  'Puntos en convenio',
-                  style: AppTextStyles.screenTitle,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.screenPadding,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 44,
-                        child: TextField(
-                          key: const Key('location-search'),
-                          onChanged: (value) => setState(() => _query = value),
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: AppColors.onSurface,
-                          ),
-                          decoration: const InputDecoration(
-                            hintText: 'Buscar por nombre',
-                            prefixIcon: Icon(Icons.search, size: 20),
-                            contentPadding: EdgeInsets.zero,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: AppSpacing.sm),
-                    SizedBox(
-                      width: 110,
-                      height: 44,
-                      child: OutlinedButton.icon(
-                        key: const Key('open-location-filters'),
-                        onPressed: () => context.pushNamed('locations-filters'),
-                        icon: const Icon(Icons.tune, size: 18),
-                        label: const Text('Filtros'),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 13),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              Expanded(
-                child: ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSpacing.screenPadding,
-                    0,
-                    AppSpacing.screenPadding,
-                    AppSpacing.xl,
+          child: ResponsiveScreenWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    context.screenHorizontalPadding,
+                    22,
+                    context.screenHorizontalPadding,
+                    18,
                   ),
-                  itemCount: visibleLocations.length,
-                  separatorBuilder: (_, _) =>
-                      const SizedBox(height: AppSpacing.md),
-                  itemBuilder: (context, index) {
-                    final location = visibleLocations[index];
-                    return LocationCard(
-                      cardKey: Key('location-${location.name}'),
-                      name: location.name,
-                      distance: location.distance,
-                      address: location.address,
-                      status: location.status,
-                      onTap: location.name == 'Éxito Norte'
-                          ? () => context.pushNamed('locations-detail')
-                          : () {},
-                    );
-                  },
+                  child: Text(
+                    'Puntos en convenio',
+                    style: AppTextStyles.screenTitle,
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.screenHorizontalPadding,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 44,
+                          child: TextField(
+                            key: const Key('location-search'),
+                            onChanged: (value) =>
+                                setState(() => _query = value),
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.onSurface,
+                            ),
+                            decoration: const InputDecoration(
+                              hintText: 'Buscar por nombre',
+                              prefixIcon: Icon(Icons.search, size: 20),
+                              contentPadding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.sm),
+                      SizedBox(
+                        width: 110,
+                        height: 44,
+                        child: OutlinedButton.icon(
+                          key: const Key('open-location-filters'),
+                          onPressed: () =>
+                              context.pushNamed('locations-filters'),
+                          icon: const Icon(Icons.tune, size: 18),
+                          label: const Text('Filtros'),
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 13),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                Expanded(
+                  child: ListView.separated(
+                    padding: EdgeInsets.fromLTRB(
+                      context.screenHorizontalPadding,
+                      0,
+                      context.screenHorizontalPadding,
+                      AppSpacing.xl,
+                    ),
+                    itemCount: visibleLocations.length,
+                    separatorBuilder: (_, _) =>
+                        const SizedBox(height: AppSpacing.md),
+                    itemBuilder: (context, index) {
+                      final location = visibleLocations[index];
+                      return LocationCard(
+                        cardKey: Key('location-${location.name}'),
+                        name: location.name,
+                        distance: location.distance,
+                        address: location.address,
+                        status: location.status,
+                        onTap: location.name == 'Éxito Norte'
+                            ? () => context.pushNamed('locations-detail')
+                            : () {},
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

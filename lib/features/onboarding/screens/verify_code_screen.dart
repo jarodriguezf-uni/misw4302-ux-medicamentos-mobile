@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../widgets/onboarding_components.dart';
@@ -45,58 +46,60 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 1),
-                OnboardingBackTitle(
-                  title: 'Verificar código',
-                  onBack: () => _goBack(context),
-                ),
-                const SizedBox(height: 41),
-                Text(
-                  'Escribe el código que enviamos por SMS a tu\ncelular.',
-                  style: AppTextStyles.bodySmall,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: List.generate(4, (index) {
-                    return Padding(
-                      padding: EdgeInsets.only(right: index == 3 ? 0 : 12),
-                      child: _OtpCell(
-                        index: index,
-                        controller: _controllers[index],
-                        focusNode: _focusNodes[index],
-                        onChanged: (value) => _handleDigit(index, value),
-                        onBackspace: () => _handleBackspace(index),
-                      ),
-                    );
-                  }),
-                ),
-                const SizedBox(height: 28),
-                OnboardingPrimaryButton(
-                  label: 'Verificar',
-                  buttonKey: const Key('otp-verify'),
-                  onPressed: () => context.goNamed('signup-eps'),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                OnboardingOutlineButton(
-                  label: 'Reenviar código',
-                  buttonKey: const Key('otp-resend'),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(content: Text('Código reenviado')),
+          child: ResponsiveScreenWidth(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.screenHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 1),
+                  OnboardingBackTitle(
+                    title: 'Verificar código',
+                    onBack: () => _goBack(context),
+                  ),
+                  const SizedBox(height: 41),
+                  Text(
+                    'Escribe el código que enviamos por SMS a tu\ncelular.',
+                    style: AppTextStyles.bodySmall,
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: List.generate(4, (index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: index == 3 ? 0 : 12),
+                        child: _OtpCell(
+                          index: index,
+                          controller: _controllers[index],
+                          focusNode: _focusNodes[index],
+                          onChanged: (value) => _handleDigit(index, value),
+                          onBackspace: () => _handleBackspace(index),
+                        ),
                       );
-                  },
-                ),
-                const SizedBox(height: AppSpacing.screenPadding),
-              ],
+                    }),
+                  ),
+                  const SizedBox(height: 28),
+                  OnboardingPrimaryButton(
+                    label: 'Verificar',
+                    buttonKey: const Key('otp-verify'),
+                    onPressed: () => context.goNamed('signup-eps'),
+                  ),
+                  const SizedBox(height: AppSpacing.lg),
+                  OnboardingOutlineButton(
+                    label: 'Reenviar código',
+                    buttonKey: const Key('otp-resend'),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(content: Text('Código reenviado')),
+                        );
+                    },
+                  ),
+                  const SizedBox(height: AppSpacing.screenPadding),
+                ],
+              ),
             ),
           ),
         ),
