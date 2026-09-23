@@ -31,7 +31,13 @@ class OnboardingBackTitle extends StatelessWidget {
           ),
         ),
         const SizedBox(width: AppSpacing.sm),
-        Text(title, style: AppTextStyles.screenTitle),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(title, style: AppTextStyles.screenTitle),
+          ),
+        ),
       ],
     );
   }
