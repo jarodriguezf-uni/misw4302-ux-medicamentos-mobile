@@ -68,7 +68,15 @@ class AffiliationSummaryRow extends StatelessWidget {
               color: AppColors.textMuted,
             ),
           ),
-          Text(value, key: valueKey, style: AppTextStyles.cardTitle),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(
+              value,
+              key: valueKey,
+              style: AppTextStyles.cardTitle,
+              textAlign: TextAlign.right,
+            ),
+          ),
         ],
       ),
     );

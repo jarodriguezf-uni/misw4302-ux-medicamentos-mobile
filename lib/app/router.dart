@@ -191,8 +191,7 @@ final appRouter = GoRouter(
           path: 'confirm',
           name: 'appointments-confirm',
           builder: (context, state) {
-            final selection =
-                state.extra as AppointmentSelection? ??
+            final selection = state.extra as AppointmentSelection? ??
                 const AppointmentSelection(
                   dayLabel: 'Hoy',
                   timeLabel: '10:00 – 10:30',
