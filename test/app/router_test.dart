@@ -16,10 +16,9 @@ Iterable<GoRoute> _leafGoRoutes(Iterable<RouteBase> routes) sync* {
 
 void main() {
   test('el router declara las 31 rutas del inventario móvil', () {
-    final names = _leafGoRoutes(appRouter.configuration.routes)
-        .map((route) => route.name)
-        .whereType<String>()
-        .toSet();
+    final names = _leafGoRoutes(
+      appRouter.configuration.routes,
+    ).map((route) => route.name).whereType<String>().toSet();
 
     expect(names, hasLength(31));
     expect(

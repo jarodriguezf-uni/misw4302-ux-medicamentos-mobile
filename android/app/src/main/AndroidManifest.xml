@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="misw4302_ux_medicamentos_mobile"
+        android:label="Medicamentos EPS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

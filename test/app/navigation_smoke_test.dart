@@ -20,10 +20,9 @@ void main() {
     await tester.pumpWidget(const MedicamentosApp());
     await tester.pumpAndSettle();
 
-    final names = _leafGoRoutes(appRouter.configuration.routes)
-        .map((route) => route.name)
-        .whereType<String>()
-        .toList();
+    final names = _leafGoRoutes(
+      appRouter.configuration.routes,
+    ).map((route) => route.name).whereType<String>().toList();
 
     expect(names, hasLength(31));
 

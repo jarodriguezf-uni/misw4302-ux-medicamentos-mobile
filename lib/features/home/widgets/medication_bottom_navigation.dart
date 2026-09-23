@@ -96,8 +96,9 @@ class _NavigationItem extends StatelessWidget {
                     height: 30,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color:
-                          selected ? AppColors.tabActiveBg : Colors.transparent,
+                      color: selected
+                          ? AppColors.tabActiveBg
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: SvgPicture.asset(

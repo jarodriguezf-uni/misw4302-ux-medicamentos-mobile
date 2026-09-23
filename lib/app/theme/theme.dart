@@ -33,8 +33,9 @@ abstract final class AppTheme {
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.onPrimary,
           minimumSize: const Size.fromHeight(AppSpacing.buttonHeight),
-          textStyle:
-              AppTextStyles.buttonLabel.copyWith(color: AppColors.onPrimary),
+          textStyle: AppTextStyles.buttonLabel.copyWith(
+            color: AppColors.onPrimary,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
           ),
@@ -86,8 +87,9 @@ abstract final class AppTheme {
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: AppColors.surface,
         surfaceTintColor: Colors.transparent,
-        modalBarrierColor:
-            AppColors.scrim.withValues(alpha: AppColors.scrimOpacity),
+        modalBarrierColor: AppColors.scrim.withValues(
+          alpha: AppColors.scrimOpacity,
+        ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(AppSpacing.sheetTopRadius),

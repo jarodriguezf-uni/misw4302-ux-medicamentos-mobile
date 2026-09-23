@@ -33,8 +33,9 @@ class DaySlotChip extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
-            border:
-                selected ? null : Border.all(color: AppColors.outlineVariant),
+            border: selected
+                ? null
+                : Border.all(color: AppColors.outlineVariant),
           ),
           child: Text(
             label,

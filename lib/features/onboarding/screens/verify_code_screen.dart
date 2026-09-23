@@ -163,8 +163,9 @@ class _OtpCell extends StatelessWidget {
           focusNode: focusNode,
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
-          textInputAction:
-              index == 3 ? TextInputAction.done : TextInputAction.next,
+          textInputAction: index == 3
+              ? TextInputAction.done
+              : TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(1),
