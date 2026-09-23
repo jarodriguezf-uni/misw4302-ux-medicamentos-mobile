@@ -5,6 +5,10 @@ import '../features/affiliation/screens/eps_screen.dart';
 import '../features/affiliation/screens/eps_status_screen.dart';
 import '../features/affiliation/screens/eps_validating_screen.dart';
 import '../features/home/screens/home_screen.dart';
+import '../features/locations/screens/location_availability_screen.dart';
+import '../features/locations/screens/location_detail_screen.dart';
+import '../features/locations/screens/location_filters_screen.dart';
+import '../features/locations/screens/locations_screen.dart';
 import '../features/medicines/screens/medicine_result_screen.dart';
 import '../features/medicines/screens/medicine_search_screen.dart';
 import '../features/medicines/screens/prescription_screen.dart';
@@ -157,42 +161,22 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/locations/filters',
       name: 'locations-filters',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '14',
-        frameName: 'Filtros: EPS y ciudad',
-        frameNodeId: '24:35',
-        checkpoint: 'M6',
-      ),
+      builder: (context, state) => const LocationFiltersScreen(),
     ),
     GoRoute(
       path: '/locations',
       name: 'locations',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '15',
-        frameName: 'Puntos en convenio',
-        frameNodeId: '24:60',
-        checkpoint: 'M6',
-      ),
+      builder: (context, state) => const LocationsScreen(),
     ),
     GoRoute(
       path: '/locations/detail',
       name: 'locations-detail',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '16',
-        frameName: 'Ficha del punto',
-        frameNodeId: '24:115',
-        checkpoint: 'M6',
-      ),
+      builder: (context, state) => const LocationDetailScreen(),
     ),
     GoRoute(
       path: '/locations/availability',
       name: 'locations-availability',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '17',
-        frameName: 'Disponibilidad con sello',
-        frameNodeId: '24:137',
-        checkpoint: 'M6',
-      ),
+      builder: (context, state) => const LocationAvailabilityScreen(),
     ),
     GoRoute(
       path: '/appointments',
