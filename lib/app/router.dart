@@ -4,6 +4,11 @@ import '../features/affiliation/screens/eps_confirm_screen.dart';
 import '../features/affiliation/screens/eps_screen.dart';
 import '../features/affiliation/screens/eps_status_screen.dart';
 import '../features/affiliation/screens/eps_validating_screen.dart';
+import '../features/appointments/models/appointment_selection.dart';
+import '../features/appointments/screens/appointment_confirm_screen.dart';
+import '../features/appointments/screens/appointment_confirmed_screen.dart';
+import '../features/appointments/screens/appointment_schedule_screen.dart';
+import '../features/appointments/screens/appointments_list_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/locations/screens/location_availability_screen.dart';
 import '../features/locations/screens/location_detail_screen.dart';
@@ -181,42 +186,30 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/appointments',
       name: 'appointments',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '21',
-        frameName: 'Mis turnos',
-        frameNodeId: '24:248',
-        checkpoint: 'M7',
-      ),
+      builder: (context, state) =>
+          const AppointmentsListScreen(hasActive: true),
       routes: [
         GoRoute(
           path: 'schedule',
           name: 'appointments-schedule',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '18',
-            frameName: 'Elegir día y franja',
-            frameNodeId: '24:151',
-            checkpoint: 'M7',
-          ),
+          builder: (context, state) => const AppointmentScheduleScreen(),
         ),
         GoRoute(
           path: 'confirm',
           name: 'appointments-confirm',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '19',
-            frameName: 'Confirmar el turno',
-            frameNodeId: '24:203',
-            checkpoint: 'M7',
-          ),
+          builder: (context, state) {
+            final selection = state.extra as AppointmentSelection? ??
+                const AppointmentSelection(
+                  dayLabel: 'Hoy',
+                  timeLabel: '10:00 – 10:30',
+                );
+            return AppointmentConfirmScreen(selection: selection);
+          },
         ),
         GoRoute(
           path: 'confirmed',
           name: 'appointments-confirmed',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '20',
-            frameName: 'Turno con hora estimada',
-            frameNodeId: '24:225',
-            checkpoint: 'M7',
-          ),
+          builder: (context, state) => const AppointmentConfirmedScreen(),
         ),
         GoRoute(
           path: 'pending-registration',
@@ -231,12 +224,8 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'empty',
           name: 'appointments-empty',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '26',
-            frameName: 'Mis turnos (sin activos)',
-            frameNodeId: '24:420',
-            checkpoint: 'M7',
-          ),
+          builder: (context, state) =>
+              const AppointmentsListScreen(hasActive: false),
         ),
       ],
     ),
