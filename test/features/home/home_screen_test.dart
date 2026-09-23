@@ -41,10 +41,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('medicine-available-notification')));
     await tester.pumpAndSettle();
-    expect(
-      find.text('22 — ¿Recibiste tu medicamento? (modal)'),
-      findsOneWidget,
-    );
+    expect(find.text('¿Recibiste tu medicamento?'), findsOneWidget);
   });
 
   testWidgets('Cuenta y Reclamar responden sin abandonar Inicio', (

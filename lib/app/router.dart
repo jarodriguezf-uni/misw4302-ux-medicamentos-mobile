@@ -9,6 +9,10 @@ import '../features/appointments/screens/appointment_confirm_screen.dart';
 import '../features/appointments/screens/appointment_confirmed_screen.dart';
 import '../features/appointments/screens/appointment_schedule_screen.dart';
 import '../features/appointments/screens/appointments_list_screen.dart';
+import '../features/claims/screens/claim_history_screen.dart';
+import '../features/claims/screens/pending_registration_screen.dart';
+import '../features/claims/screens/pickup_complete_screen.dart';
+import '../features/claims/screens/pickup_decision_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/locations/screens/location_availability_screen.dart';
 import '../features/locations/screens/location_detail_screen.dart';
@@ -22,7 +26,6 @@ import '../features/onboarding/screens/login_screen.dart';
 import '../features/onboarding/screens/signup_screen.dart';
 import '../features/onboarding/screens/verify_code_screen.dart';
 import '../features/onboarding/screens/welcome_screen.dart';
-import '../shared/widgets/placeholder_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/welcome',
@@ -86,22 +89,12 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'pickup-decision',
           name: 'home-pickup-decision',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '22',
-            frameName: '¿Recibiste tu medicamento? (modal)',
-            frameNodeId: '65:85',
-            checkpoint: 'M8',
-          ),
+          builder: (context, state) => const PickupDecisionScreen(),
         ),
         GoRoute(
           path: 'pickup-complete',
           name: 'home-pickup-complete',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '23',
-            frameName: 'Reclamo completado (modal)',
-            frameNodeId: '65:113',
-            checkpoint: 'M8',
-          ),
+          builder: (context, state) => const PickupCompleteScreen(),
         ),
       ],
     ),
@@ -198,7 +191,8 @@ final appRouter = GoRouter(
           path: 'confirm',
           name: 'appointments-confirm',
           builder: (context, state) {
-            final selection = state.extra as AppointmentSelection? ??
+            final selection =
+                state.extra as AppointmentSelection? ??
                 const AppointmentSelection(
                   dayLabel: 'Hoy',
                   timeLabel: '10:00 – 10:30',
@@ -214,12 +208,7 @@ final appRouter = GoRouter(
         GoRoute(
           path: 'pending-registration',
           name: 'appointments-pending-registration',
-          builder: (context, state) => const PlaceholderScreen(
-            frameNumber: '23',
-            frameName: 'Registrar lo pendiente',
-            frameNodeId: '24:338',
-            checkpoint: 'M8',
-          ),
+          builder: (context, state) => const PendingRegistrationScreen(),
         ),
         GoRoute(
           path: 'empty',
@@ -232,12 +221,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/history',
       name: 'history',
-      builder: (context, state) => const PlaceholderScreen(
-        frameNumber: '25',
-        frameName: 'Historial del reclamo',
-        frameNodeId: '24:374',
-        checkpoint: 'M8',
-      ),
+      builder: (context, state) => const ClaimHistoryScreen(),
     ),
   ],
 );
