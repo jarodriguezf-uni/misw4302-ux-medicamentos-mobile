@@ -76,9 +76,13 @@ class _CurrentClaimCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Reclamo de medicamento en curso',
-                  style: AppTextStyles.cardTitle,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Reclamo de medicamento en curso',
+                    style: AppTextStyles.cardTitle,
+                  ),
                 ),
                 Spacer(),
                 Text('Losartán 50 mg', style: AppTextStyles.bodySmall),
