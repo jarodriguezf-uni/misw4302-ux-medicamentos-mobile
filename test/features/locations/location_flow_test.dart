@@ -81,6 +81,6 @@ void main() {
 
     await tester.tap(find.byKey(const Key('choose-appointment')));
     await tester.pumpAndSettle();
-    expect(find.text('18 — Elegir día y franja'), findsOneWidget);
+    expect(find.text('Elegir turno'), findsOneWidget);
   });
 }
