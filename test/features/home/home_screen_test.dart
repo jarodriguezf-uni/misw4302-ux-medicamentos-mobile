@@ -35,7 +35,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('nav-turno')));
     await tester.pumpAndSettle();
-    expect(find.text('21 — Mis turnos'), findsOneWidget);
+    expect(find.text('Mis turnos'), findsOneWidget);
 
     appRouter.goNamed('home');
     await tester.pumpAndSettle();

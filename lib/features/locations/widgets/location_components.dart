@@ -15,23 +15,23 @@ class AvailabilityBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final (label, icon, background, foreground) = switch (status) {
       LocationAvailability.available => (
-        'Disponible',
-        Icons.check,
-        AppColors.successBg,
-        AppColors.successFg,
-      ),
+          'Disponible',
+          Icons.check,
+          AppColors.successBg,
+          AppColors.successFg,
+        ),
       LocationAvailability.unknown => (
-        'Sin dato',
-        Icons.schedule,
-        AppColors.warningBg,
-        AppColors.warningFg,
-      ),
+          'Sin dato',
+          Icons.schedule,
+          AppColors.warningBg,
+          AppColors.warningFg,
+        ),
       LocationAvailability.unavailable => (
-        'Agotado',
-        Icons.close,
-        AppColors.dangerBg,
-        AppColors.dangerFg,
-      ),
+          'Agotado',
+          Icons.close,
+          AppColors.dangerBg,
+          AppColors.dangerFg,
+        ),
     };
 
     return Container(
