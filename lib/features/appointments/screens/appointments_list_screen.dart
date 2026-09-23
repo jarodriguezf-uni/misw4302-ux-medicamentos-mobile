@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../home/widgets/medication_bottom_navigation.dart';
@@ -25,43 +26,45 @@ class AppointmentsListScreen extends StatelessWidget {
         ),
         body: SafeArea(
           bottom: false,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.screenPadding,
-              33,
-              AppSpacing.screenPadding,
-              AppSpacing.xl,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Mis turnos', style: AppTextStyles.greetingTitle),
-                const SizedBox(height: 25),
-                AppointmentRow(
-                  rowKey: const Key('appointment-a045'),
-                  title: 'A-045 · Éxito Norte',
-                  subtitle: 'Hoy 10:30',
-                  statusLabel: hasActive ? 'Activo' : 'Reclamado',
-                  active: hasActive,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                const AppointmentRow(
-                  rowKey: Key('appointment-b012'),
-                  title: 'B-012 · Cruz Verde',
-                  subtitle: 'Ayer',
-                  statusLabel: 'Reclamado',
-                  active: false,
-                ),
-                if (!hasActive) ...[
-                  const SizedBox(height: AppSpacing.xl),
-                  Center(
-                    child: Text(
-                      'No tienes turnos activos.',
-                      style: AppTextStyles.bodySmall,
-                    ),
+          child: ResponsiveScreenWidth(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(
+                context.screenHorizontalPadding,
+                33,
+                context.screenHorizontalPadding,
+                AppSpacing.xl,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Mis turnos', style: AppTextStyles.greetingTitle),
+                  const SizedBox(height: 25),
+                  AppointmentRow(
+                    rowKey: const Key('appointment-a045'),
+                    title: 'A-045 · Éxito Norte',
+                    subtitle: 'Hoy 10:30',
+                    statusLabel: hasActive ? 'Activo' : 'Reclamado',
+                    active: hasActive,
                   ),
+                  const SizedBox(height: AppSpacing.sm),
+                  const AppointmentRow(
+                    rowKey: Key('appointment-b012'),
+                    title: 'B-012 · Cruz Verde',
+                    subtitle: 'Ayer',
+                    statusLabel: 'Reclamado',
+                    active: false,
+                  ),
+                  if (!hasActive) ...[
+                    const SizedBox(height: AppSpacing.xl),
+                    Center(
+                      child: Text(
+                        'No tienes turnos activos.',
+                        style: AppTextStyles.bodySmall,
+                      ),
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),

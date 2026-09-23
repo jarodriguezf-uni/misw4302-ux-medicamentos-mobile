@@ -37,7 +37,7 @@ class PickupCompleteScreen extends StatelessWidget {
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,
           ),
-          const Spacer(),
+          const SizedBox(height: AppSpacing.xxl),
           OnboardingPrimaryButton(
             label: 'Calificar el punto',
             buttonKey: const Key('rate-location'),

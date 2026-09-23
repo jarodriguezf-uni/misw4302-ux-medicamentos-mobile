@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
 import '../widgets/affiliation_components.dart';
@@ -38,33 +39,36 @@ class _EpsScreenState extends State<EpsScreen> {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                OnboardingBackTitle(
-                  title: 'Vincular tu EPS',
-                  onBack: () => context.pop(),
-                ),
-                const SizedBox(height: 26),
-                EpsSearchField(controller: _searchController),
-                const SizedBox(height: 20),
-                EpsOptionCard(
-                  label: 'Sanitas',
-                  cardKey: const Key('eps-sanitas'),
-                  onTap: () => context.goNamed('signup-eps-confirm-sanitas'),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                EpsOptionCard(
-                  label: 'Compensar',
-                  cardKey: const Key('eps-compensar'),
-                  onTap: () => context.goNamed('signup-eps-confirm-compensar'),
-                ),
-              ],
+          child: ResponsiveScreenWidth(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.screenHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  OnboardingBackTitle(
+                    title: 'Vincular tu EPS',
+                    onBack: () => context.pop(),
+                  ),
+                  const SizedBox(height: 26),
+                  EpsSearchField(controller: _searchController),
+                  const SizedBox(height: 20),
+                  EpsOptionCard(
+                    label: 'Sanitas',
+                    cardKey: const Key('eps-sanitas'),
+                    onTap: () => context.goNamed('signup-eps-confirm-sanitas'),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  EpsOptionCard(
+                    label: 'Compensar',
+                    cardKey: const Key('eps-compensar'),
+                    onTap: () =>
+                        context.goNamed('signup-eps-confirm-compensar'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

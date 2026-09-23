@@ -79,7 +79,7 @@ class FormulaValidBadge extends StatelessWidget {
         children: [
           const Icon(Icons.check, size: 18, color: AppColors.onSurface),
           const SizedBox(width: AppSpacing.sm),
-          Text(label, style: AppTextStyles.bodyMedium),
+          Expanded(child: Text(label, style: AppTextStyles.bodyMedium)),
         ],
       ),
     );

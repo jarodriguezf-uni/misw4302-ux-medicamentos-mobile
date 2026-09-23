@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/colors.dart';
+import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
@@ -28,82 +29,84 @@ class _LocationFiltersScreenState extends State<LocationFiltersScreen> {
       ),
       child: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.screenPadding,
-              8,
-              AppSpacing.screenPadding,
-              AppSpacing.xl,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                OnboardingBackTitle(
-                  title: 'Filtros',
-                  onBack: () => context.canPop()
-                      ? context.pop()
-                      : context.goNamed('medicines-search'),
-                ),
-                const SizedBox(height: 30),
-                _FilterDropdown(
-                  label: 'EPS',
-                  fieldKey: const Key('filter-eps'),
-                  value: _eps,
-                  items: const ['Compensar', 'Sanitas'],
-                  onChanged: (value) => setState(() => _eps = value),
-                ),
-                const SizedBox(height: 20),
-                _FilterDropdown(
-                  label: 'Ciudad',
-                  fieldKey: const Key('filter-city'),
-                  value: _city,
-                  items: const ['Bogotá', 'Medellín', 'Cali'],
-                  onChanged: (value) => setState(() => _city = value),
-                ),
-                const SizedBox(height: 26),
-                Text('Distancia', style: AppTextStyles.bodyMediumBold),
-                const SizedBox(height: AppSpacing.md),
-                Wrap(
-                  spacing: AppSpacing.sm,
-                  runSpacing: AppSpacing.sm,
-                  children: ['1 km', '3 km', '5 km', 'Cualquiera']
-                      .map(
-                        (distance) => ChoiceChip(
-                          key: Key('distance-$distance'),
-                          label: Text(distance),
-                          selected: _distance == distance,
-                          onSelected: (_) =>
-                              setState(() => _distance = distance),
-                          showCheckmark: false,
-                          selectedColor: AppColors.primaryContainer,
-                          backgroundColor: AppColors.surface,
-                          side: BorderSide(
-                            color: _distance == distance
-                                ? AppColors.primary
-                                : AppColors.outline,
+          child: ResponsiveScreenWidth(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(
+                context.screenHorizontalPadding,
+                8,
+                context.screenHorizontalPadding,
+                AppSpacing.xl,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OnboardingBackTitle(
+                    title: 'Filtros',
+                    onBack: () => context.canPop()
+                        ? context.pop()
+                        : context.goNamed('medicines-search'),
+                  ),
+                  const SizedBox(height: 30),
+                  _FilterDropdown(
+                    label: 'EPS',
+                    fieldKey: const Key('filter-eps'),
+                    value: _eps,
+                    items: const ['Compensar', 'Sanitas'],
+                    onChanged: (value) => setState(() => _eps = value),
+                  ),
+                  const SizedBox(height: 20),
+                  _FilterDropdown(
+                    label: 'Ciudad',
+                    fieldKey: const Key('filter-city'),
+                    value: _city,
+                    items: const ['Bogotá', 'Medellín', 'Cali'],
+                    onChanged: (value) => setState(() => _city = value),
+                  ),
+                  const SizedBox(height: 26),
+                  Text('Distancia', style: AppTextStyles.bodyMediumBold),
+                  const SizedBox(height: AppSpacing.md),
+                  Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: ['1 km', '3 km', '5 km', 'Cualquiera']
+                        .map(
+                          (distance) => ChoiceChip(
+                            key: Key('distance-$distance'),
+                            label: Text(distance),
+                            selected: _distance == distance,
+                            onSelected: (_) =>
+                                setState(() => _distance = distance),
+                            showCheckmark: false,
+                            selectedColor: AppColors.primaryContainer,
+                            backgroundColor: AppColors.surface,
+                            side: BorderSide(
+                              color: _distance == distance
+                                  ? AppColors.primary
+                                  : AppColors.outline,
+                            ),
+                            labelStyle: AppTextStyles.bodySmall.copyWith(
+                              color: _distance == distance
+                                  ? AppColors.onPrimaryContainer
+                                  : AppColors.onSurface,
+                              fontWeight: _distance == distance
+                                  ? FontWeight.w700
+                                  : FontWeight.w400,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
-                          labelStyle: AppTextStyles.bodySmall.copyWith(
-                            color: _distance == distance
-                                ? AppColors.onPrimaryContainer
-                                : AppColors.onSurface,
-                            fontWeight: _distance == distance
-                                ? FontWeight.w700
-                                : FontWeight.w400,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-                const SizedBox(height: 38),
-                OnboardingPrimaryButton(
-                  label: 'Aplicar filtros',
-                  buttonKey: const Key('apply-location-filters'),
-                  onPressed: () => context.goNamed('locations'),
-                ),
-              ],
+                        )
+                        .toList(),
+                  ),
+                  const SizedBox(height: 38),
+                  OnboardingPrimaryButton(
+                    label: 'Aplicar filtros',
+                    buttonKey: const Key('apply-location-filters'),
+                    onPressed: () => context.goNamed('locations'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
