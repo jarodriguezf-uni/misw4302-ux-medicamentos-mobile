@@ -57,8 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 8),
-                        Text('Iniciar sesión',
-                            style: AppTextStyles.screenTitle),
+                        Text(
+                          'Iniciar sesión',
+                          style: AppTextStyles.screenTitle,
+                        ),
                         const SizedBox(height: 203),
                         OnboardingTextField(
                           label: 'Documento o correo',

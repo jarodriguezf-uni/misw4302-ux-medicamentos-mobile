@@ -82,8 +82,10 @@ class _SignupScreenState extends State<SignupScreen> {
                                 color: AppColors.textMuted,
                               ),
                             ),
-                            icon:
-                                const Icon(Icons.keyboard_arrow_down, size: 18),
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 18,
+                            ),
                             style: AppTextStyles.bodySmall.copyWith(
                               color: AppColors.onSurface,
                             ),
@@ -144,14 +146,16 @@ class _SignupScreenState extends State<SignupScreen> {
                                 key: const Key('signup-terms'),
                                 value: _acceptedTerms,
                                 activeColor: AppColors.primary,
-                                side:
-                                    const BorderSide(color: AppColors.outline),
+                                side: const BorderSide(
+                                  color: AppColors.outline,
+                                ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(3),
                                 ),
                                 onChanged: (value) {
                                   setState(
-                                      () => _acceptedTerms = value ?? false);
+                                    () => _acceptedTerms = value ?? false,
+                                  );
                                 },
                               ),
                             ),

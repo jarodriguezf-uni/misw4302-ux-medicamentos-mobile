@@ -44,10 +44,7 @@ class MedicineResultScreen extends StatelessWidget {
                         context.pushNamed('medicines-prescription-losartan'),
                   ),
                   const SizedBox(height: AppSpacing.lg),
-                  Text(
-                    'EQUIVALENTES GENÉRICOS',
-                    style: AppTextStyles.overline,
-                  ),
+                  Text('EQUIVALENTES GENÉRICOS', style: AppTextStyles.overline),
                   const SizedBox(height: AppSpacing.sm),
                   MedicineRow(
                     rowKey: const Key('medicine-result-losartan-potasico'),
@@ -62,9 +59,8 @@ class MedicineResultScreen extends StatelessWidget {
                     rowKey: const Key('medicine-result-losartan-mk'),
                     title: 'Losartán MK 50 mg',
                     subtitle: 'genérico',
-                    onTap: () => context.pushNamed(
-                      'medicines-prescription-losartan-mk',
-                    ),
+                    onTap: () =>
+                        context.pushNamed('medicines-prescription-losartan-mk'),
                   ),
                 ],
               ),
