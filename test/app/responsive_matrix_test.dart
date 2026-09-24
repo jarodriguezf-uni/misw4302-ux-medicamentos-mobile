@@ -29,41 +29,36 @@ const _scenarios = <(String label, double width, double height)>[
 void main() {
   for (final scenario in _scenarios) {
     for (final textScale in [1.0, 1.3]) {
-      testWidgets(
-        '${scenario.$1} · escala de texto ${textScale}x: '
-        'las 31 rutas no producen overflow',
-        (tester) async {
-          final view = tester.view;
-          view.physicalSize =
-              Size(scenario.$2, scenario.$3) * view.devicePixelRatio;
-          tester.platformDispatcher.textScaleFactorTestValue = textScale;
-          addTearDown(view.resetPhysicalSize);
-          addTearDown(
-            tester.platformDispatcher.clearTextScaleFactorTestValue,
-          );
+      testWidgets('${scenario.$1} · escala de texto ${textScale}x: '
+          'las 31 rutas no producen overflow', (tester) async {
+        final view = tester.view;
+        view.physicalSize =
+            Size(scenario.$2, scenario.$3) * view.devicePixelRatio;
+        tester.platformDispatcher.textScaleFactorTestValue = textScale;
+        addTearDown(view.resetPhysicalSize);
+        addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
-          await tester.pumpWidget(const MedicamentosApp());
+        await tester.pumpWidget(const MedicamentosApp());
+        await tester.pumpAndSettle();
+
+        final names = _leafGoRoutes(
+          appRouter.configuration.routes,
+        ).map((route) => route.name).whereType<String>().toList();
+
+        expect(names, hasLength(31));
+
+        for (final name in names) {
+          appRouter.goNamed(name);
           await tester.pumpAndSettle();
-
-          final names = _leafGoRoutes(appRouter.configuration.routes)
-              .map((route) => route.name)
-              .whereType<String>()
-              .toList();
-
-          expect(names, hasLength(31));
-
-          for (final name in names) {
-            appRouter.goNamed(name);
-            await tester.pumpAndSettle();
-            expect(
-              tester.takeException(),
-              isNull,
-              reason: 'la ruta "$name" desbordó en ${scenario.$1} '
-                  'con escala de texto ${textScale}x',
-            );
-          }
-        },
-      );
+          expect(
+            tester.takeException(),
+            isNull,
+            reason:
+                'la ruta "$name" desbordó en ${scenario.$1} '
+                'con escala de texto ${textScale}x',
+          );
+        }
+      });
     }
   }
 }

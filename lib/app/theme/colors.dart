@@ -76,18 +76,18 @@ class AppSemanticColors extends ThemeExtension<AppSemanticColors> {
   });
 
   factory AppSemanticColors.defaults() => const AppSemanticColors(
-        successBg: AppColors.successBg,
-        successFg: AppColors.successFg,
-        successText: AppColors.successText,
-        warningBg: AppColors.warningBg,
-        warningFg: AppColors.warningFg,
-        dangerBg: AppColors.dangerBg,
-        dangerFg: AppColors.dangerFg,
-        tabActiveBg: AppColors.tabActiveBg,
-        tabActiveFg: AppColors.tabActiveFg,
-        textMuted: AppColors.textMuted,
-        fieldBackground: AppColors.fieldBackground,
-      );
+    successBg: AppColors.successBg,
+    successFg: AppColors.successFg,
+    successText: AppColors.successText,
+    warningBg: AppColors.warningBg,
+    warningFg: AppColors.warningFg,
+    dangerBg: AppColors.dangerBg,
+    dangerFg: AppColors.dangerFg,
+    tabActiveBg: AppColors.tabActiveBg,
+    tabActiveFg: AppColors.tabActiveFg,
+    textMuted: AppColors.textMuted,
+    fieldBackground: AppColors.fieldBackground,
+  );
 
   final Color successBg;
   final Color successFg;

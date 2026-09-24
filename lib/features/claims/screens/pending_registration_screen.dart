@@ -48,9 +48,7 @@ class PendingRegistrationScreen extends StatelessWidget {
                           width: double.infinity,
                           padding: const EdgeInsets.all(AppSpacing.lg),
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColors.outlineVariant,
-                            ),
+                            border: Border.all(color: AppColors.outlineVariant),
                             borderRadius: BorderRadius.circular(
                               AppSpacing.cardRadius,
                             ),

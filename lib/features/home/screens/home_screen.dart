@@ -43,10 +43,7 @@ class HomeScreen extends StatelessWidget {
                         context.goNamed('medicines-treatment-losartan'),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    'ÚLTIMAS NOTIFICACIONES',
-                    style: AppTextStyles.overline,
-                  ),
+                  Text('ÚLTIMAS NOTIFICACIONES', style: AppTextStyles.overline),
                   const SizedBox(height: 13),
                   _NotificationCard(
                     onTap: () => context.goNamed('home-pickup-decision'),

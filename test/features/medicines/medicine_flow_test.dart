@@ -45,15 +45,15 @@ void main() {
   });
 
   testWidgets(
-      'rama Losartán potásico preserva el medicamento hasta tratamiento', (
-    tester,
-  ) async {
-    await expectBranchPreservesMedicine(
-      tester,
-      resultCardKey: const Key('medicine-result-losartan-potasico'),
-      medicineName: 'Losartán potásico 50 mg',
-    );
-  });
+    'rama Losartán potásico preserva el medicamento hasta tratamiento',
+    (tester) async {
+      await expectBranchPreservesMedicine(
+        tester,
+        resultCardKey: const Key('medicine-result-losartan-potasico'),
+        medicineName: 'Losartán potásico 50 mg',
+      );
+    },
+  );
 
   testWidgets('rama Losartán MK preserva el medicamento hasta tratamiento', (
     tester,
