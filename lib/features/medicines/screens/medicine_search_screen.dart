@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/theme/colors.dart';
 import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
+import '../../home/widgets/medication_bottom_navigation.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
 
 class MedicineSearchScreen extends StatelessWidget {
@@ -18,7 +19,11 @@ class MedicineSearchScreen extends StatelessWidget {
         systemNavigationBarColor: AppColors.surface,
       ),
       child: Scaffold(
+        bottomNavigationBar: const MedicationBottomNavigation(
+          selectedTab: MedicationTab.medicines,
+        ),
         body: SafeArea(
+          bottom: false,
           child: ResponsiveScreenWidth(
             child: Padding(
               padding: EdgeInsets.symmetric(

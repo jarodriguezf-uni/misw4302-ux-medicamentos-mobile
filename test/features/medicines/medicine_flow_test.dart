@@ -5,6 +5,33 @@ import 'package:misw4302_ux_medicamentos_mobile/app/app.dart';
 import 'package:misw4302_ux_medicamentos_mobile/app/router.dart';
 
 void main() {
+  testWidgets('Buscar medicamento muestra la navegación con Medicinas activa', (
+    tester,
+  ) async {
+    appRouter.goNamed('medicines-search');
+    await tester.pumpWidget(const MedicamentosApp());
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('nav-inicio')), findsOneWidget);
+    expect(find.byKey(const Key('nav-cuenta')), findsOneWidget);
+    expect(find.byKey(const Key('nav-medicinas')), findsOneWidget);
+    expect(find.byKey(const Key('nav-reclamar')), findsOneWidget);
+    expect(find.byKey(const Key('nav-turno')), findsOneWidget);
+    expect(
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is Semantics &&
+            widget.properties.label == 'Medicinas' &&
+            widget.properties.selected == true,
+      ),
+      findsOneWidget,
+    );
+
+    await tester.tap(find.byKey(const Key('nav-inicio')));
+    await tester.pumpAndSettle();
+    expect(find.text('Hola, María'), findsOneWidget);
+  });
+
   Future<void> expectBranchPreservesMedicine(
     WidgetTester tester, {
     required Key resultCardKey,
