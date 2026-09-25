@@ -44,82 +44,31 @@ class LocationAvailabilityScreen extends StatelessWidget {
                               : context.goNamed('locations-detail'),
                         ),
                         const SizedBox(height: AppSpacing.xxl),
-                        Center(
-                          child: Container(
-                            width: 132,
-                            height: 132,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.successBg,
-                              border: Border.all(
-                                color: AppColors.successFg,
-                                width: 2,
-                              ),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.check_circle_outline,
-                                  size: 38,
-                                  color: AppColors.successFg,
-                                ),
-                                SizedBox(height: 7),
-                                Text(
-                                  'Disponible',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.successFg,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 26),
-                        const Center(
-                          child: Text(
-                            'Losartán 50 mg',
-                            style: AppTextStyles.screenTitle,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.sm),
-                        Center(
-                          child: Text(
-                            'Éxito Norte · actualizado hace 2 h',
-                            style: AppTextStyles.bodySmall,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        const SizedBox(height: 26),
                         Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.all(AppSpacing.lg),
+                          padding: const EdgeInsets.symmetric(vertical: 40),
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: AppColors.fieldBackground,
+                            color: AppColors.successBg,
                             borderRadius: BorderRadius.circular(
-                              AppSpacing.cardRadius,
+                              AppSpacing.highlightCardRadius,
                             ),
                           ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                Icons.info_outline,
-                                size: 20,
-                                color: AppColors.onSurfaceVariant,
-                              ),
-                              const SizedBox(width: AppSpacing.sm),
-                              Expanded(
-                                child: Text(
-                                  'La disponibilidad puede cambiar mientras '
-                                  'llegas al punto.',
-                                  style: AppTextStyles.bodySmall,
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            'Disponible',
+                            style: AppTextStyles.screenTitle.copyWith(
+                              color: AppColors.successFg,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            'Actualizado hace 2 h · el dato puede variar; '
+                            'confirma al llegar.',
+                            style: AppTextStyles.bodySmall,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         const SizedBox(height: AppSpacing.xxl),
@@ -127,7 +76,7 @@ class LocationAvailabilityScreen extends StatelessWidget {
                           label: 'Elegir turno',
                           buttonKey: const Key('choose-appointment'),
                           onPressed: () =>
-                              context.goNamed('appointments-schedule'),
+                              context.pushNamed('appointments-schedule'),
                         ),
                       ],
                     ),

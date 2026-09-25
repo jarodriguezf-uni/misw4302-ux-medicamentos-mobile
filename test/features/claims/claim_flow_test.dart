@@ -19,10 +19,10 @@ void main() {
     await tester.tap(find.byKey(const Key('pickup-complete')));
     await tester.pumpAndSettle();
 
-    expect(find.text('Reclamo completado'), findsOneWidget);
+    expect(find.text('¡Reclamo completado!'), findsOneWidget);
     await tester.tap(find.byKey(const Key('rate-location')));
     await tester.pump();
-    expect(find.text('Reclamo completado'), findsOneWidget);
+    expect(find.text('¡Reclamo completado!'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('view-history')));
     await tester.pumpAndSettle();
@@ -40,13 +40,15 @@ void main() {
 
     await tester.tap(find.byKey(const Key('pickup-partial')));
     await tester.pumpAndSettle();
-    expect(find.text('Registrar lo pendiente'), findsOneWidget);
+    // El título y el botón comparten el mismo texto, igual que en el mockup.
+    expect(find.text('Registrar pendiente'), findsNWidgets(2));
     expect(find.text('Metformina 850 mg'), findsOneWidget);
-    expect(find.text('Cantidad pendiente'), findsOneWidget);
+    expect(find.text('CANTIDAD PENDIENTE'), findsOneWidget);
+    expect(find.text('30'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('register-pending')));
     await tester.pumpAndSettle();
-    expect(find.text('Reclamo completado'), findsOneWidget);
+    expect(find.text('¡Reclamo completado!'), findsOneWidget);
   });
 
   testWidgets('No había responde sin abandonar el modal', (tester) async {

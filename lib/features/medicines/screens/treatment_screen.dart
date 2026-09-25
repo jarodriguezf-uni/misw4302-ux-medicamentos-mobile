@@ -59,7 +59,7 @@ class TreatmentScreen extends StatelessWidget {
                   OnboardingPrimaryButton(
                     label: 'Buscar dónde reclamar',
                     buttonKey: const Key('treatment-find-location'),
-                    onPressed: () => context.goNamed('locations-filters'),
+                    onPressed: () => context.pushNamed('locations-filters'),
                   ),
                 ],
               ),

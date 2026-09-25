@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/theme/colors.dart';
 import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
-import '../../../app/theme/typography.dart';
+import '../../affiliation/widgets/affiliation_components.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
 import '../widgets/location_components.dart';
 
@@ -22,12 +22,12 @@ class LocationDetailScreen extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: ResponsiveScreenWidth(
-            child: SingleChildScrollView(
+            child: Padding(
               padding: EdgeInsets.fromLTRB(
                 context.screenHorizontalPadding,
                 8,
                 context.screenHorizontalPadding,
-                AppSpacing.xl,
+                AppSpacing.lg,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,60 +39,45 @@ class LocationDetailScreen extends StatelessWidget {
                         : context.goNamed('locations'),
                   ),
                   const SizedBox(height: AppSpacing.xl),
-                  const _DetailRow(
-                    icon: Icons.location_on_outlined,
+                  const AffiliationSummaryRow(
                     label: 'Dirección',
                     value: 'Cra. 15 # 100-20',
                   ),
-                  const SizedBox(height: AppSpacing.lg),
-                  const _DetailRow(
-                    icon: Icons.schedule,
+                  const AffiliationSummaryRow(
                     label: 'Horario',
                     value: '8:00 a. m. – 8:00 p. m.',
                   ),
-                  const SizedBox(height: AppSpacing.xl),
-                  Text(
-                    'Disponibilidad del medicamento',
-                    style: AppTextStyles.bodyMediumBold,
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(AppSpacing.lg),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.outlineVariant),
-                      borderRadius: BorderRadius.circular(
-                        AppSpacing.cardRadius,
-                      ),
-                    ),
-                    child: const Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Losartán 50 mg',
-                            style: AppTextStyles.cardTitle,
-                          ),
-                        ),
-                        AvailabilityBadge(
-                          status: LocationAvailability.available,
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: AppSpacing.lg),
+                  const MedicationAvailabilityPill(
+                    medicationLabel: 'Losartán 50 mg',
+                    status: LocationAvailability.available,
                   ),
                   const SizedBox(height: AppSpacing.lg),
-                  const LocationMapPlaceholder(),
-                  const SizedBox(height: AppSpacing.xl),
-                  OnboardingPrimaryButton(
-                    label: 'Sacar turno aquí',
-                    buttonKey: const Key('location-check-availability'),
-                    onPressed: () =>
-                        context.pushNamed('locations-availability'),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  OnboardingOutlineButton(
-                    label: 'Llamar al punto',
-                    buttonKey: const Key('location-call'),
-                    onPressed: () {},
+                  const Expanded(child: LocationMapPlaceholder()),
+                  const SizedBox(height: AppSpacing.lg),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OnboardingPrimaryButton(
+                          label: 'Sacar turno aquí',
+                          buttonKey: const Key(
+                            'location-check-availability',
+                          ),
+                          compact: true,
+                          onPressed: () =>
+                              context.pushNamed('locations-availability'),
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.md),
+                      Expanded(
+                        child: OnboardingOutlineButton(
+                          label: 'Llamar al punto',
+                          buttonKey: const Key('location-call'),
+                          compact: true,
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -100,39 +85,6 @@ class LocationDetailScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _DetailRow extends StatelessWidget {
-  const _DetailRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
-
-  final IconData icon;
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, size: 21, color: AppColors.primary),
-        const SizedBox(width: AppSpacing.md),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(label, style: AppTextStyles.bodySmall),
-              const SizedBox(height: 3),
-              Text(value, style: AppTextStyles.bodyMediumBold),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

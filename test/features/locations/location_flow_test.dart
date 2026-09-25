@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:misw4302_ux_medicamentos_mobile/app/app.dart';
 import 'package:misw4302_ux_medicamentos_mobile/app/router.dart';
+import 'package:misw4302_ux_medicamentos_mobile/features/appointments/widgets/appointment_components.dart';
 import 'package:misw4302_ux_medicamentos_mobile/features/locations/widgets/location_components.dart';
 
 void main() {
@@ -16,19 +17,16 @@ void main() {
     expect(find.text('Compensar'), findsOneWidget);
     expect(find.text('Bogotá'), findsOneWidget);
 
-    final initialChip = tester.widget<ChoiceChip>(
-      find.byKey(const Key('distance-3 km')),
-    );
-    expect(initialChip.selected, isTrue);
+    Finder chip(String distance) => find.ancestor(
+          of: find.byKey(Key('distance-$distance')),
+          matching: find.byType(DaySlotChip),
+        );
+
+    expect(tester.widget<DaySlotChip>(chip('3 km')).selected, isTrue);
 
     await tester.tap(find.byKey(const Key('distance-5 km')));
     await tester.pump();
-    expect(
-      tester
-          .widget<ChoiceChip>(find.byKey(const Key('distance-5 km')))
-          .selected,
-      isTrue,
-    );
+    expect(tester.widget<DaySlotChip>(chip('5 km')).selected, isTrue);
 
     await tester.tap(find.byKey(const Key('apply-location-filters')));
     await tester.pumpAndSettle();
@@ -67,8 +65,8 @@ void main() {
 
     await tester.tap(find.byKey(const Key('location-Éxito Norte')));
     await tester.pumpAndSettle();
-    expect(find.text('Disponibilidad del medicamento'), findsOneWidget);
-    expect(find.text('Mapa del punto'), findsOneWidget);
+    expect(find.text('Losartán 50 mg · Disponible'), findsOneWidget);
+    expect(find.text('Mapa'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('location-call')));
     await tester.pump();
@@ -76,7 +74,13 @@ void main() {
 
     await tester.tap(find.byKey(const Key('location-check-availability')));
     await tester.pumpAndSettle();
-    expect(find.text('Éxito Norte · actualizado hace 2 h'), findsOneWidget);
+    expect(find.text('Disponible'), findsOneWidget);
+    expect(
+      find.text(
+        'Actualizado hace 2 h · el dato puede variar; confirma al llegar.',
+      ),
+      findsOneWidget,
+    );
     expect(find.byKey(const Key('choose-appointment')), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('choose-appointment')));

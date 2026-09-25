@@ -10,6 +10,7 @@ class DaySlotChip extends StatelessWidget {
     required this.selected,
     required this.onTap,
     this.chipKey,
+    this.compact = false,
     super.key,
   });
 
@@ -17,6 +18,10 @@ class DaySlotChip extends StatelessWidget {
   final bool selected;
   final VoidCallback onTap;
   final Key? chipKey;
+
+  /// Versión más pequeña (usada en los chips de distancia de Filtros, que
+  /// son más numerosos y necesitan caber varios por fila).
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +33,29 @@ class DaySlotChip extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
         child: Container(
-          height: 36,
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          alignment: Alignment.center,
+          height: compact ? 30 : 36,
+          padding: EdgeInsets.symmetric(horizontal: compact ? 12 : 18),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
-            border: selected
-                ? null
-                : Border.all(color: AppColors.outlineVariant),
+            border:
+                selected ? null : Border.all(color: AppColors.outlineVariant),
           ),
-          child: Text(
-            label,
-            style: AppTextStyles.bodyMediumBold.copyWith(
-              color: selected ? AppColors.surface : AppColors.onSurface,
+          // `Center` en vez del `alignment` de `Container`: con `alignment`
+          // seteado y sin `width`, `Container` delega en un `Align` que por
+          // defecto se expande a todo el ancho disponible en vez de ajustarse
+          // al contenido — dentro de un `Wrap` eso hacía que cada chip
+          // ocupara la fila completa y se apilaran uno por línea.
+          child: Center(
+            widthFactor: 1,
+            child: Text(
+              label,
+              softWrap: false,
+              style: (compact
+                      ? AppTextStyles.bodySmallBold
+                      : AppTextStyles.bodyMediumBold)
+                  .copyWith(
+                color: selected ? AppColors.surface : AppColors.onSurface,
+              ),
             ),
           ),
         ),
