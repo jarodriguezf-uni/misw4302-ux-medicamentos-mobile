@@ -40,6 +40,18 @@ flutter test
 Las pruebas cubren la apertura de las 31 rutas/estados, los recorridos
 principales y la adaptación a tamaños Android pequeños, base y grandes.
 
+## APK precompilado
+
+El entregable Android está disponible en
+[`release/medicamentos-eps-android.apk`](release/medicamentos-eps-android.apk).
+Su SHA-256 se encuentra en [`release/SHA256SUMS`](release/SHA256SUMS).
+
+Para instalarlo en un dispositivo o emulador conectado:
+
+```bash
+adb install -r release/medicamentos-eps-android.apk
+```
+
 ## Generar e instalar el APK
 
 ```bash
