@@ -1,5 +1,5 @@
-// Matriz visual de las 31 rutas en tres anchos lógicos (teléfono pequeño,
-// baseline y teléfono grande, sección 12/17 del plan técnico) y dos escalas
+// Matriz visual de las 31 rutas en cuatro anchos lógicos (teléfono pequeño,
+// baseline y dos teléfonos grandes, sección 12/17 del plan técnico) y dos escalas
 // de texto, para detectar overflow sin depender de un emulador/dispositivo
 // físico (no disponible en este entorno). Complementa navigation_smoke_test.
 
@@ -24,6 +24,7 @@ const _scenarios = <(String label, double width, double height)>[
   ('teléfono pequeño (320)', 320, 690),
   ('baseline (360)', 360, 800),
   ('teléfono grande (414)', 414, 896),
+  ('teléfono grande Pixel 9 Pro XL (448)', 448, 998),
 ];
 
 void main() {

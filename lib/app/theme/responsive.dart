@@ -6,11 +6,11 @@ import 'spacing.dart';
 /// (teléfonos pequeños, p. ej. 320 de ancho). Sección 12 del plan técnico.
 const double _compactWidthBreakpoint = 360;
 
-/// Ancho total máximo del contenido (padding + contentWidth + padding) en
-/// teléfonos grandes: se conserva la composición aprobada en el baseline de
-/// 360 en vez de estirarla; el ancho extra se centra como margen.
-const double _maxContentTotalWidth =
-    AppSpacing.screenPadding * 2 + AppSpacing.contentWidth;
+/// Hasta 600 px lógicos el cuerpo usa todo el ancho disponible; así los
+/// teléfonos grandes conservan el padding lateral aprobado sin acumular un
+/// segundo margen exterior. A partir de este ancho (tablets y superficies
+/// mayores), el contenido se limita y se centra.
+const double _maxContentTotalWidth = 600;
 
 extension ResponsiveScreen on BuildContext {
   /// Padding horizontal de borde de pantalla: 16 px por debajo del baseline
