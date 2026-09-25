@@ -6,6 +6,8 @@ import '../../../app/theme/colors.dart';
 import '../../../app/theme/responsive.dart';
 import '../../../app/theme/spacing.dart';
 import '../../../app/theme/typography.dart';
+import '../../affiliation/widgets/affiliation_components.dart';
+import '../../appointments/widgets/appointment_components.dart';
 import '../../onboarding/widgets/onboarding_components.dart';
 
 class LocationFiltersScreen extends StatefulWidget {
@@ -16,8 +18,6 @@ class LocationFiltersScreen extends StatefulWidget {
 }
 
 class _LocationFiltersScreenState extends State<LocationFiltersScreen> {
-  String _eps = 'Compensar';
-  String _city = 'Bogotá';
   String _distance = '3 km';
 
   @override
@@ -46,64 +46,32 @@ class _LocationFiltersScreenState extends State<LocationFiltersScreen> {
                         ? context.pop()
                         : context.goNamed('medicines-search'),
                   ),
-                  const SizedBox(height: 30),
-                  _FilterDropdown(
-                    label: 'EPS',
-                    fieldKey: const Key('filter-eps'),
-                    value: _eps,
-                    items: const ['Compensar', 'Sanitas'],
-                    onChanged: (value) => setState(() => _eps = value),
-                  ),
-                  const SizedBox(height: 20),
-                  _FilterDropdown(
-                    label: 'Ciudad',
-                    fieldKey: const Key('filter-city'),
-                    value: _city,
-                    items: const ['Bogotá', 'Medellín', 'Cali'],
-                    onChanged: (value) => setState(() => _city = value),
-                  ),
-                  const SizedBox(height: 26),
-                  Text('Distancia', style: AppTextStyles.bodyMediumBold),
-                  const SizedBox(height: AppSpacing.md),
+                  const SizedBox(height: AppSpacing.xl),
+                  const AffiliationSummaryRow(label: 'EPS', value: 'Compensar'),
+                  const AffiliationSummaryRow(label: 'Ciudad', value: 'Bogotá'),
+                  const SizedBox(height: AppSpacing.xl),
+                  Text('DISTANCIA MÁXIMA', style: AppTextStyles.overline),
+                  const SizedBox(height: AppSpacing.sm),
                   Wrap(
                     spacing: AppSpacing.sm,
                     runSpacing: AppSpacing.sm,
                     children: ['1 km', '3 km', '5 km', 'Cualquiera']
                         .map(
-                          (distance) => ChoiceChip(
-                            key: Key('distance-$distance'),
-                            label: Text(distance),
+                          (distance) => DaySlotChip(
+                            chipKey: Key('distance-$distance'),
+                            label: distance,
                             selected: _distance == distance,
-                            onSelected: (_) =>
-                                setState(() => _distance = distance),
-                            showCheckmark: false,
-                            selectedColor: AppColors.primaryContainer,
-                            backgroundColor: AppColors.surface,
-                            side: BorderSide(
-                              color: _distance == distance
-                                  ? AppColors.primary
-                                  : AppColors.outline,
-                            ),
-                            labelStyle: AppTextStyles.bodySmall.copyWith(
-                              color: _distance == distance
-                                  ? AppColors.onPrimaryContainer
-                                  : AppColors.onSurface,
-                              fontWeight: _distance == distance
-                                  ? FontWeight.w700
-                                  : FontWeight.w400,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
+                            onTap: () => setState(() => _distance = distance),
+                            compact: true,
                           ),
                         )
                         .toList(),
                   ),
-                  const SizedBox(height: 38),
+                  const SizedBox(height: AppSpacing.xl),
                   OnboardingPrimaryButton(
                     label: 'Aplicar filtros',
                     buttonKey: const Key('apply-location-filters'),
-                    onPressed: () => context.goNamed('locations'),
+                    onPressed: () => context.pushNamed('locations'),
                   ),
                 ],
               ),
@@ -111,69 +79,6 @@ class _LocationFiltersScreenState extends State<LocationFiltersScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _FilterDropdown extends StatelessWidget {
-  const _FilterDropdown({
-    required this.label,
-    required this.value,
-    required this.items,
-    required this.onChanged,
-    required this.fieldKey,
-  });
-
-  final String label;
-  final String value;
-  final List<String> items;
-  final ValueChanged<String> onChanged;
-  final Key fieldKey;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        OnboardingFieldLabel(label),
-        const SizedBox(height: AppSpacing.xs),
-        Container(
-          height: 52,
-          decoration: BoxDecoration(
-            color: AppColors.fieldBackground,
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: PopupMenuButton<String>(
-            key: fieldKey,
-            initialValue: value,
-            onSelected: onChanged,
-            itemBuilder: (context) => items
-                .map(
-                  (item) => PopupMenuItem<String>(
-                    value: item,
-                    child: Text(item, style: AppTextStyles.bodySmall),
-                  ),
-                )
-                .toList(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      value,
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: AppColors.onSurface,
-                      ),
-                    ),
-                  ),
-                  const Icon(Icons.keyboard_arrow_down, size: 20),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

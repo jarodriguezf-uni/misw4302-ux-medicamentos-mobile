@@ -30,10 +30,11 @@ class PickupCompleteScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text('Reclamo completado', style: AppTextStyles.sheetTitle),
+          Text('¡Reclamo completado!', style: AppTextStyles.sheetTitle),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            'Registramos la entrega de tus medicamentos.',
+            'Gracias por confirmar. Puedes calificar el punto o ver tu '
+            'historial.',
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,
           ),

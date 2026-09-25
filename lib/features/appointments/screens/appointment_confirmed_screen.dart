@@ -42,7 +42,7 @@ class AppointmentConfirmedScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.xl),
                   const _NotifyRow(
-                    icon: Icons.chat_bubble_outline,
+                    icon: Icons.mode_comment_outlined,
                     label: 'Te lo enviaremos por WhatsApp',
                   ),
                   const SizedBox(height: AppSpacing.md),

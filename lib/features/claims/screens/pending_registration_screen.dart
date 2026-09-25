@@ -38,7 +38,7 @@ class PendingRegistrationScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         OnboardingBackTitle(
-                          title: 'Registrar lo pendiente',
+                          title: 'Registrar pendiente',
                           onBack: () => context.canPop()
                               ? context.pop()
                               : context.goNamed('home'),
@@ -60,42 +60,33 @@ class PendingRegistrationScreen extends StatelessWidget {
                                 'Metformina 850 mg',
                                 style: AppTextStyles.cardTitle,
                               ),
-                              SizedBox(height: AppSpacing.lg),
-                              _PendingValue(
-                                label: 'Cantidad pendiente',
-                                value: '30',
-                              ),
+                              SizedBox(height: 5),
+                              Text('Medicamento',
+                                  style: AppTextStyles.bodySmall),
                             ],
                           ),
                         ),
                         const SizedBox(height: AppSpacing.xl),
+                        Text('CANTIDAD PENDIENTE',
+                            style: AppTextStyles.overline),
+                        const SizedBox(height: AppSpacing.sm),
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.all(AppSpacing.lg),
                           decoration: BoxDecoration(
-                            color: AppColors.fieldBackground,
+                            border: Border.all(color: AppColors.outlineVariant),
                             borderRadius: BorderRadius.circular(
                               AppSpacing.cardRadius,
                             ),
                           ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                Icons.info_outline,
-                                size: 20,
-                                color: AppColors.onSurfaceVariant,
-                              ),
-                              const SizedBox(width: AppSpacing.sm),
-                              Expanded(
-                                child: Text(
-                                  'Te avisaremos si el medicamento aparece '
-                                  'en las próximas 48 h.',
-                                  style: AppTextStyles.bodySmall,
-                                ),
-                              ),
-                            ],
-                          ),
+                          child:
+                              const Text('30', style: AppTextStyles.cardTitle),
+                        ),
+                        const SizedBox(height: AppSpacing.lg),
+                        const Text(
+                          'La droguería tiene 48 h para entregar el '
+                          'pendiente.',
+                          style: AppTextStyles.bodySmall,
                         ),
                         const SizedBox(height: AppSpacing.xxl),
                         OnboardingPrimaryButton(
@@ -113,24 +104,6 @@ class PendingRegistrationScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _PendingValue extends StatelessWidget {
-  const _PendingValue({required this.label, required this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(child: Text(label, style: AppTextStyles.bodySmall)),
-        const SizedBox(width: AppSpacing.sm),
-        Text(value, style: AppTextStyles.bodyMediumBold),
-      ],
     );
   }
 }

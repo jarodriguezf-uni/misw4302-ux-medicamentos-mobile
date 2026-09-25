@@ -91,4 +91,30 @@ void main() {
       medicineName: 'Losartán MK 50 mg',
     );
   });
+
+  testWidgets(
+    'atrás desde Filtros vuelve a Tu tratamiento (no reinicia el stack)',
+    (tester) async {
+      appRouter.goNamed('medicines-search');
+      await tester.pumpWidget(const MedicamentosApp());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(const Key('scan-prescription')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('medicine-result-losartan-mk')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('prescription-continue')));
+      await tester.pumpAndSettle();
+      expect(find.text('Tu tratamiento'), findsOneWidget);
+
+      await tester.tap(find.byKey(const Key('treatment-find-location')));
+      await tester.pumpAndSettle();
+      expect(find.text('Filtros'), findsOneWidget);
+
+      await tester.tap(find.byKey(const Key('back-button')));
+      await tester.pumpAndSettle();
+      expect(find.text('Tu tratamiento'), findsOneWidget);
+      expect(find.text('Losartán MK 50 mg'), findsOneWidget);
+    },
+  );
 }

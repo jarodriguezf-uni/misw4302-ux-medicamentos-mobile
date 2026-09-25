@@ -6,6 +6,27 @@ import '../../../app/theme/typography.dart';
 
 enum LocationAvailability { available, unknown, unavailable }
 
+(String label, Color background, Color foreground) _availabilityStyle(
+  LocationAvailability status,
+) =>
+    switch (status) {
+      LocationAvailability.available => (
+          'Disponible',
+          AppColors.successBg,
+          AppColors.successFg,
+        ),
+      LocationAvailability.unknown => (
+          'Sin dato',
+          AppColors.warningBg,
+          AppColors.warningFg,
+        ),
+      LocationAvailability.unavailable => (
+          'Agotado',
+          AppColors.dangerBg,
+          AppColors.dangerFg,
+        ),
+    };
+
 class AvailabilityBadge extends StatelessWidget {
   const AvailabilityBadge({required this.status, super.key});
 
@@ -13,26 +34,7 @@ class AvailabilityBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (label, icon, background, foreground) = switch (status) {
-      LocationAvailability.available => (
-        'Disponible',
-        Icons.check,
-        AppColors.successBg,
-        AppColors.successFg,
-      ),
-      LocationAvailability.unknown => (
-        'Sin dato',
-        Icons.schedule,
-        AppColors.warningBg,
-        AppColors.warningFg,
-      ),
-      LocationAvailability.unavailable => (
-        'Agotado',
-        Icons.close,
-        AppColors.dangerBg,
-        AppColors.dangerFg,
-      ),
-    };
+    final (label, background, foreground) = _availabilityStyle(status);
 
     return Container(
       height: AppSpacing.badgeHeight,
@@ -41,16 +43,15 @@ class AvailabilityBadge extends StatelessWidget {
         color: background,
         borderRadius: BorderRadius.circular(AppSpacing.badgeRadius),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 13, color: foreground),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: AppTextStyles.badgeLabel.copyWith(color: foreground),
-          ),
-        ],
+      // `Center(widthFactor: 1)` en vez del `alignment` de `Container`: ver
+      // la nota en `DaySlotChip` sobre por qué `alignment` sin `width` puede
+      // expandir el pill al ancho disponible en vez de ajustarse al texto.
+      child: Center(
+        widthFactor: 1,
+        child: Text(
+          label,
+          style: AppTextStyles.badgeLabel.copyWith(color: foreground),
+        ),
       ),
     );
   }
@@ -60,7 +61,6 @@ class LocationCard extends StatelessWidget {
   const LocationCard({
     required this.name,
     required this.distance,
-    required this.address,
     required this.status,
     this.onTap,
     this.cardKey,
@@ -69,7 +69,6 @@ class LocationCard extends StatelessWidget {
 
   final String name;
   final String distance;
-  final String address;
   final LocationAvailability status;
   final VoidCallback? onTap;
   final Key? cardKey;
@@ -88,21 +87,21 @@ class LocationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: Text(name, style: AppTextStyles.cardTitle)),
-                  const SizedBox(width: AppSpacing.sm),
-                  AvailabilityBadge(status: status),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(name, style: AppTextStyles.cardTitle),
+                    const SizedBox(height: 5),
+                    Text(distance, style: AppTextStyles.bodySmall),
+                  ],
+                ),
               ),
-              const SizedBox(height: 7),
-              Text(address, style: AppTextStyles.bodySmall),
-              const SizedBox(height: 5),
-              Text(distance, style: AppTextStyles.bodySmall),
+              const SizedBox(width: AppSpacing.sm),
+              AvailabilityBadge(status: status),
             ],
           ),
         ),
@@ -111,10 +110,42 @@ class LocationCard extends StatelessWidget {
   }
 }
 
-class LocationMapPlaceholder extends StatelessWidget {
-  const LocationMapPlaceholder({this.height = 132, super.key});
+class MedicationAvailabilityPill extends StatelessWidget {
+  const MedicationAvailabilityPill({
+    required this.medicationLabel,
+    required this.status,
+    super.key,
+  });
 
-  final double height;
+  final String medicationLabel;
+  final LocationAvailability status;
+
+  @override
+  Widget build(BuildContext context) {
+    final (statusLabel, background, foreground) = _availabilityStyle(status);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      alignment: Alignment.centerLeft,
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(AppSpacing.badgeRadius + 3),
+      ),
+      child: Text(
+        '$medicationLabel · $statusLabel',
+        style: AppTextStyles.bodyMediumBold.copyWith(color: foreground),
+      ),
+    );
+  }
+}
+
+class LocationMapPlaceholder extends StatelessWidget {
+  const LocationMapPlaceholder({this.height, super.key});
+
+  /// Cuando es `null`, ocupa el alto que le dé el padre (pensado para
+  /// envolver este widget en `Expanded`).
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -126,14 +157,8 @@ class LocationMapPlaceholder extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
         border: Border.all(color: AppColors.outlineVariant),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.map_outlined, size: 30, color: AppColors.textMuted),
-          const SizedBox(height: AppSpacing.sm),
-          Text('Mapa del punto', style: AppTextStyles.bodySmall),
-        ],
-      ),
+      alignment: Alignment.center,
+      child: Text('Mapa', style: AppTextStyles.bodySmall),
     );
   }
 }

@@ -133,12 +133,19 @@ class OnboardingPrimaryButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.buttonKey,
+    this.compact = false,
     super.key,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final Key? buttonKey;
+
+  /// Padding horizontal reducido (usado cuando el botón comparte fila con
+  /// otro, p. ej. "Sacar turno aquí" / "Llamar al punto"), donde el padding
+  /// por defecto de Material 3 (24 px por lado) no deja espacio para el
+  /// texto en una sola línea.
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +155,17 @@ class OnboardingPrimaryButton extends StatelessWidget {
       child: FilledButton(
         key: buttonKey,
         onPressed: onPressed,
-        child: Text(label),
+        style: compact
+            ? FilledButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+              )
+            : null,
+        child: compact
+            ? FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(label, textAlign: TextAlign.center),
+              )
+            : Text(label, textAlign: TextAlign.center),
       ),
     );
   }
@@ -159,12 +176,16 @@ class OnboardingOutlineButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.buttonKey,
+    this.compact = false,
     super.key,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final Key? buttonKey;
+
+  /// Ver la nota de [OnboardingPrimaryButton.compact].
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +195,17 @@ class OnboardingOutlineButton extends StatelessWidget {
       child: OutlinedButton(
         key: buttonKey,
         onPressed: onPressed,
-        child: Text(label),
+        style: compact
+            ? OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+              )
+            : null,
+        child: compact
+            ? FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(label, textAlign: TextAlign.center),
+              )
+            : Text(label, textAlign: TextAlign.center),
       ),
     );
   }

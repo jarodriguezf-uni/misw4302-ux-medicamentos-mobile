@@ -26,6 +26,18 @@ extension ResponsiveScreen on BuildContext {
 /// Envuelve el cuerpo de una pantalla para que, en teléfonos grandes, el
 /// contenido no se estire más allá del ancho de diseño y quede centrado en
 /// vez de separar los elementos del borde.
+///
+/// No usa `Center`/`Align`: ambos aflojan también las restricciones de alto
+/// que llegan al hijo, lo que hace que un `SingleChildScrollView` se encoja
+/// a la altura de su contenido en vez de llenar la pantalla (y quede
+/// centrado verticalmente con huecos enormes arriba y abajo). Tampoco basta
+/// un `Row` con el hijo suelto: al no ser flexible, recibe ancho máximo
+/// *infinito* de `RenderFlex`, así que `ConstrainedBox` nunca ve el ancho
+/// real del teléfono y en pantallas angostas termina reservando el ancho de
+/// diseño completo (360) aunque el dispositivo mida menos, desbordando. Por
+/// eso se mide el ancho disponible con `LayoutBuilder` y se fuerza con
+/// `SizedBox` antes de centrar con `Row` + `crossAxisAlignment.stretch`
+/// (que sí preserva el alto).
 class ResponsiveScreenWidth extends StatelessWidget {
   const ResponsiveScreenWidth({required this.child, super.key});
 
@@ -33,11 +45,17 @@ class ResponsiveScreenWidth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: _maxContentTotalWidth),
-        child: child,
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth < _maxContentTotalWidth
+            ? constraints.maxWidth
+            : _maxContentTotalWidth;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [SizedBox(width: width, child: child)],
+        );
+      },
     );
   }
 }
