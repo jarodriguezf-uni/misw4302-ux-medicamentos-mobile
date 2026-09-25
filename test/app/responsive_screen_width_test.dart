@@ -28,50 +28,64 @@ void main() {
     );
   }
 
-  testWidgets(
-    'un hijo con poco contenido igual llena el alto disponible',
-    (tester) async {
-      await pump(
-        tester,
-        360,
-        800,
-        child: const SingleChildScrollView(
-          key: contentKey,
-          child: SizedBox(height: 50, child: Text('poco contenido')),
-        ),
-      );
-      await tester.pumpAndSettle();
-
-      expect(tester.getSize(find.byKey(contentKey)).height, 800);
-    },
-  );
-
-  testWidgets(
-    'en teléfonos angostos usa el ancho real sin desbordar',
-    (tester) async {
-      await pump(
-        tester,
-        320,
-        690,
-        child: const SizedBox(key: contentKey),
-      );
-      await tester.pumpAndSettle();
-
-      expect(tester.getSize(find.byKey(contentKey)).width, 320);
-      expect(tester.takeException(), isNull);
-    },
-  );
-
-  testWidgets('en teléfonos grandes capa el ancho y lo centra', (
+  testWidgets('un hijo con poco contenido igual llena el alto disponible', (
     tester,
   ) async {
-    await pump(tester, 500, 900, child: const SizedBox(key: contentKey));
+    await pump(
+      tester,
+      360,
+      800,
+      child: const SingleChildScrollView(
+        key: contentKey,
+        child: SizedBox(height: 50, child: Text('poco contenido')),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(tester.getSize(find.byKey(contentKey)).height, 800);
+  });
+
+  testWidgets('en teléfonos angostos usa el ancho real sin desbordar', (
+    tester,
+  ) async {
+    await pump(tester, 320, 690, child: const SizedBox(key: contentKey));
+    await tester.pumpAndSettle();
+
+    expect(tester.getSize(find.byKey(contentKey)).width, 320);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('el baseline conserva el ancho aprobado de 360', (tester) async {
+    await pump(tester, 360, 800, child: const SizedBox(key: contentKey));
     await tester.pumpAndSettle();
 
     final size = tester.getSize(find.byKey(contentKey));
     final topLeft = tester.getTopLeft(find.byKey(contentKey));
-    expect(size.width, lessThan(500));
-    expect(size.height, 900);
-    expect(topLeft.dx, greaterThan(0));
+    expect(size.width, 360);
+    expect(topLeft.dx, 0);
+  });
+
+  testWidgets('un teléfono grande usa todo el ancho disponible', (
+    tester,
+  ) async {
+    await pump(tester, 448, 998, child: const SizedBox(key: contentKey));
+    await tester.pumpAndSettle();
+
+    final size = tester.getSize(find.byKey(contentKey));
+    final topLeft = tester.getTopLeft(find.byKey(contentKey));
+    expect(size.width, 448);
+    expect(size.height, 998);
+    expect(topLeft.dx, 0);
+  });
+
+  testWidgets('en tablets limita el ancho y lo centra', (tester) async {
+    await pump(tester, 720, 1024, child: const SizedBox(key: contentKey));
+    await tester.pumpAndSettle();
+
+    final size = tester.getSize(find.byKey(contentKey));
+    final topLeft = tester.getTopLeft(find.byKey(contentKey));
+    expect(size.width, 600);
+    expect(size.height, 1024);
+    expect(topLeft.dx, 60);
   });
 }
